@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-class WishlistContainsId implements Serializable {
+public class WishlistContainsId implements Serializable {
     @Column(name = "WLID")
     private Integer wlId;
     @Column(name = "ProductID")

@@ -1,5 +1,6 @@
 package edu.ku.comp306.ecommerce.entity;
 
+import edu.ku.comp306.ecommerce.converter.ProductColorConverter;
 import edu.ku.comp306.ecommerce.enums.ProductColor;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -20,7 +21,7 @@ public class Product {
     @Column(name = "Price", nullable = false)
     private Float price;
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = ProductColorConverter.class)
     @Column(name = "Color", nullable = false)
     private ProductColor color;
 

@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-class ReviewedId implements Serializable {
+public class ReviewedId implements Serializable {
     @Column(name = "UserID")
     private Integer userId;
 

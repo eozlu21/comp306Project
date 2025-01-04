@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home - E-Commerce</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header>
+    <h1>Welcome to Our E-Commerce Platform</h1>
+</header>
+
+<main>
+    <h2>Product List</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Loop through the products provided by the controller -->
+        <tr th:each="product : ${products}">
+            <td th:text="${product.productName}">Product Name</td>
+            <td th:text="'$' + ${product.price}">Product Price</td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<footer>
+    <p>&copy; 2025 E-Commerce Platform</p>
+</footer>
+</body>
+</html>
