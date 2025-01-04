@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: E-Commerce Application
+
+  datasource:
+    url: jdbc:mysql://sql7.freesqldatabase.com:3306/sql7754913
+    username: sql7754913
+    password: gcEF5ydYc4
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
