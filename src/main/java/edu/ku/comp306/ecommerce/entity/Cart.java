@@ -2,12 +2,17 @@ package edu.ku.comp306.ecommerce.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.io.Serializable;
 
+@Entity
+@Table(name = "Cart")
+@IdClass(CartId.class)
 @Data
-public class WishlistContainsId implements Serializable {
-    @Column(name = "WLID")
-    private Integer wlId;
+public class Cart {
+    @Id
+    @Column(name = "UserID")
+    private Integer userId;
+
+    @Id
     @Column(name = "ProductID")
     private Integer productId;
 }

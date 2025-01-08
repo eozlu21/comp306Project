@@ -7,7 +7,6 @@ import lombok.Data;
 @Table(name = "User")
 @Data
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "UserID")
@@ -30,6 +29,9 @@ public class User {
 
     @Column(name = "Email", length = 100, nullable = false)
     private String email;
+
+    @Column(name = "username", nullable = true)
+    private String username;
 
     // TODO: Buyer or Seller one-to-one relationships could be mapped here if needed
 }

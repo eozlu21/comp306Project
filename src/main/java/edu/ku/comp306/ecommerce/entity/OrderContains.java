@@ -8,7 +8,6 @@ import lombok.Data;
 @IdClass(OrderContainsId.class)
 @Data
 public class OrderContains {
-
     @Id
     @Column(name = "OrderID")
     private Integer orderId;

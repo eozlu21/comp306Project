@@ -7,10 +7,24 @@ import lombok.Data;
 @Table(name = "Laptop")
 @Data
 public class Laptop {
-
     @Id
     @Column(name = "ProductID")
     private Integer productId;
+
+    @Column(name = "CPU", length = 50, nullable = false)
+    private String cpu;
+
+    @Column(name = "GPU", length = 50, nullable = false)
+    private String gpu;
+
+    @Column(name = "RAM", nullable = false)
+    private Integer ram;
+
+    @Column(name = "Storage", nullable = false)
+    private Integer storage;
+
+    @Column(name = "OS", length = 50, nullable = false)
+    private String os;
 
     @Column(name = "FaceRecognition", nullable = false)
     private Boolean faceRecognition;
