@@ -9,7 +9,6 @@ import lombok.Data;
 @Table(name = "Product")
 @Data
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ProductID")
