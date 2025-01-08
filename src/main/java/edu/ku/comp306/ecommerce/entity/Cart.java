@@ -15,4 +15,7 @@ public class Cart {
     @Id
     @Column(name = "ProductID")
     private Integer productId;
+
+    @Column(name = "Quantity", nullable = false)
+    private Integer quantity;
 }
