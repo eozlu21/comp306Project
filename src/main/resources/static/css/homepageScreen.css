@@ -77,11 +77,12 @@ header {
 }
 
 .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr; /* One column for now */
+    gap: 20px; /* Space between rows */
+    margin-top: 20px;
 }
+
 
 .product-card {
     width: 200px;
