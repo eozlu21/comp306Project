@@ -16,4 +16,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query(value = "SELECT * FROM Product WHERE Price BETWEEN ?1 AND ?2", nativeQuery = true)
     List<Product> findByPriceRange(Float minPrice, Float maxPrice);
 
+    @Query(value = "SELECT * FROM Product ORDER BY RAND() LIMIT 5", nativeQuery = true)
+    List<Product> findRandomProducts();
+
 }
