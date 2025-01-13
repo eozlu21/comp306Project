@@ -15,14 +15,14 @@
         <button class="profile-btn">Profile</button>
     </header>
 
-
     <main>
         <h2>Popular products:</h2>
-        <div class="products">
+        <div class="product-list">
             <!-- Iterate over the products list -->
             <div class="product" th:each="product : ${products}">
                 <!-- Product Image -->
                 <img th:src="${product.imageURL}" alt="Product Image" class="product-image">
+
                 <!-- Product Details -->
                 <div class="product-details">
                     <p class="product-name" th:text="${product.productName}">Product Name</p>
@@ -30,7 +30,7 @@
                     <p class="price" th:text="'Price: $' + ${product.price}">Price</p>
                 </div>
 
-                <!-- Placeholder Reviews -->
+                <!-- Reviews Section -->
                 <div class="reviews">
                     <h3>Reviews</h3>
                     <ul>
@@ -44,7 +44,6 @@
                 <button class="details-button">Show Details</button>
             </div>
         </div>
-
     </main>
 
     <aside>

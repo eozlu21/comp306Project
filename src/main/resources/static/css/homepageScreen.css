@@ -83,6 +83,41 @@ header {
     margin-top: 20px;
 }
 
+.product {
+    display: flex; /* Horizontal alignment */
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px; /* Space between sections */
+    border: 1px solid #ccc;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.reviews {
+    flex: 2;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.reviews h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.reviews ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.reviews li {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
 
 .product-card {
     width: 200px;
