@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Screen</title>
+    <link rel="stylesheet" href="/css/homepageScreen.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Home Screen:</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for other products">
+            <button type="button">&#128269;</button>
+        </div>
+        <button class="profile-button">Profile</button>
+    </header>
+
+    <main>
+        <h2>Popular products:</h2>
+        <div class="products">
+            <!-- Iterate over the products list -->
+            <div class="product" th:each="product : ${products}">
+                <!-- Product Image -->
+                <img th:src="${product.imageURL}" alt="Product Image" class="product-image">
+                <!-- Product Details -->
+                <div class="product-details">
+                    <p class="product-name" th:text="${product.productName}">Product Name</p>
+                    <p class="brand" th:text="'Brand: ' + ${product.brand}">Brand</p>
+                    <p class="price" th:text="'Price: $' + ${product.price}">Price</p>
+                </div>
+
+                <!-- Placeholder Reviews -->
+                <div class="reviews">
+                    <h3>Reviews</h3>
+                    <ul>
+                        <li>Username1: "Great product!"</li>
+                        <li>Username2: "Satisfied with the quality."</li>
+                        <li>Username3: "Worth the price!"</li>
+                    </ul>
+                </div>
+
+                <!-- Show Details Button -->
+                <button class="details-button">Show Details</button>
+            </div>
+        </div>
+
+    </main>
+
+    <aside>
+        <button>View Wishlist</button>
+        <button>View ShoppingCart</button>
+        <button>View my orders</button>
+    </aside>
+</div>
+</body>
+</html>
