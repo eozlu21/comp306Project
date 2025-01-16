@@ -5,6 +5,7 @@ import edu.ku.comp306.ecommerce.entity.*;
 import edu.ku.comp306.ecommerce.repository.CameraRepository;
 import edu.ku.comp306.ecommerce.repository.PhoneRepository;
 import edu.ku.comp306.ecommerce.repository.ReviewedRepository;
+import edu.ku.comp306.ecommerce.service.CartService;
 import edu.ku.comp306.ecommerce.service.ProductService;
 import edu.ku.comp306.ecommerce.repository.LaptopRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ public class ProductDetailsController {
     private final PhoneRepository phoneRepository;
     private final CameraRepository cameraRepository;
     private final ReviewedRepository reviewedRepository;
+    private final CartService cartService;
 
     @GetMapping("/productDetails/{id}")
     public String getProductDetails(@PathVariable("id") Integer productId, Model model) {
@@ -62,7 +64,7 @@ public class ProductDetailsController {
             @RequestParam("userId") Integer userId
     ) {
         // your service logic to add (or update) the product in the Cart
-        // cartService.addToCart(userId, productId, quantity);
+        cartService.addToCart(userId, productId, quantity);
 
         return "redirect:/productDetails/" + productId;
     }
