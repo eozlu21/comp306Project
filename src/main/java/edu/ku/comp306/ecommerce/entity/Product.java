@@ -42,7 +42,7 @@ public class Product {
      * year is stored as int or short in JPA for simplicity.
      */
     @Column(name = "ReleaseDate", nullable = false)
-    private Integer releaseYear;
+    private Integer releaseDate;
 
     @Column(name = "ImageURL", length = 200)
     private String imageURL;

@@ -20,4 +20,5 @@ public class LaptopController {
     public List<LaptopProductDTO> getLaptops(@RequestParam String resolution) {
         return laptopService.getLaptopsWithProductDetailsByResolution(resolution);
     }
+
 }

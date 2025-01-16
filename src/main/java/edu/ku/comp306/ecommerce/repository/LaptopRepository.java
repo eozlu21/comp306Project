@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface LaptopRepository extends JpaRepository<Laptop, Integer> {
+
     // Join query for Laptop and Product
     @Query(value = """
             SELECT

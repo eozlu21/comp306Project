@@ -20,8 +20,6 @@
         </div>
     </header>
 
-
-
     <main>
         <h2>Popular products:</h2>
         <div class="product-list">
@@ -48,12 +46,12 @@
                 </div>
 
                 <!-- Show Details Button -->
-                <button class="details-button">Show Details</button>
+                <a class="details-button" th:href="@{/productDetails/{id}(id=${product.productId})}">
+                    Show Details
+                </a>
             </div>
         </div>
     </main>
-
-
 </div>
 </body>
 </html>
