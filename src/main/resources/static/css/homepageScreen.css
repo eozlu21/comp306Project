@@ -207,3 +207,22 @@ aside button:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
 
+.back-button-container {
+    text-align: left;
+    margin: 20px;
+}
+
+.back-button-container button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.back-button-container button:hover {
+    background-color: #0056b3;
+}
+
