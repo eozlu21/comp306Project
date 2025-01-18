@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Product Details</title>
+  <link rel="stylesheet" href="/css/productDetails.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="details-container">
+  <h1 th:text="${product.productName}">Product Name</h1>
+
+  <div class="product-grid">
+    <div class="product-image-section">
+      <img th:src="${product.imageURL}" alt="Product Image" class="details-image"/>
+    </div>
+
+    <div class="product-info">
+      <div class="basic-info">
+        <p th:text="'Brand: ' + ${product.brand}">Brand</p>
+        <p th:text="'Price: ' + ${product.price} + '0 TL'">Price</p>
+        <p th:text="'Color: ' + ${product.color}">Color</p>
+        <p th:text="'Dimension: ' + ${product.dimension}">Dimension</p>
+        <p th:text="'Weight: ' + ${product.weight} + ' lbs'">Weight</p>
+        <p th:text="'Warranty: ' + ${product.warrantyDurationYears} + ' years'">Warranty</p>
+        <p th:text="'Release Date: ' + ${product.releaseDate}">Release Date</p>
+      </div>
+
+      <!-- Laptop Details -->
+      <div class="laptop-section" th:if="${laptop}">
+        <h3>Laptop Specifications</h3>
+        <div class="specs-grid">
+          <p th:text="'CPU: ' + ${laptop.cpu}">CPU</p>
+          <p th:text="'GPU: ' + ${laptop.gpu}">GPU</p>
+          <p th:text="'RAM: ' + ${laptop.ram} + ' GB'">RAM</p>
+          <p th:text="'Storage: ' + ${laptop.storage}">Storage</p>
+          <p th:text="'OS: ' + ${laptop.os}">OS</p>
+          <p th:text="'Resolution: ' + ${laptop.resolution}">Resolution</p>
+          <p th:text="'Screen Size: ' + ${laptop.screenSize}">Screen Size</p>
+          <p th:text="'Battery Capacity: ' + ${laptop.batteryCapacity} + ' mAh'">Battery</p>
+          <p th:text="'Face Recognition: ' + (${laptop.faceRecognition} ? 'Yes' : 'No')">Face Recognition</p>
+          <p th:text="'Webcam: ' + (${laptop.webcam} ? 'Yes' : 'No')">Webcam</p>
+          <p th:text="'TouchScreen: ' + (${laptop.touchScreen} ? 'Yes' : 'No')">TouchScreen</p>
+          <p th:text="'Fingerprint Sensor: ' + (${laptop.fingerprintSensor} ? 'Yes' : 'No')">Fingerprint Sensor</p>
+        </div>
+      </div>
+
+      <!-- Phone Details -->
+      <div class="phone-section" th:if="${phone}">
+        <h3>Phone Specifications</h3>
+        <div class="specs-grid">
+          <p th:text="'Processor: ' + ${phone.processor}">Processor</p>
+          <p th:text="'RAM: ' + ${phone.ram} + ' GB'">RAM</p>
+          <p th:text="'Camera: ' + ${phone.cameraResolution}">Camera Resolution</p>
+          <p th:text="'Battery: ' + ${phone.batteryCapacityMah} + ' mAh'">Battery</p>
+          <p th:text="'Screen Size: ' + ${phone.screenSize}">Screen Size</p>
+          <p th:text="'Fast Charging: ' + (${phone.fastCharging} ? 'Yes' : 'No')">Fast Charging</p>
+          <p th:text="'Fingerprint Sensor: ' + (${phone.fingerprintSensor} ? 'Yes' : 'No')">Fingerprint Sensor</p>
+          <p th:text="'Face Recognition: ' + (${phone.faceRecognition} ? 'Yes' : 'No')">Face Recognition</p>
+        </div>
+      </div>
+
+      <!-- Camera Details -->
+      <div class="camera-section" th:if="${camera}">
+        <h3>Camera Specifications</h3>
+        <div class="specs-grid">
+          <p th:text="'Resolution: ' + ${camera.resolution}">Resolution</p>
+          <p th:text="'Optical Zoom: ' + ${camera.opticalZoom} + 'x'">Optical Zoom</p>
+          <p th:text="'Flash: ' + (${camera.flash} ? 'Yes' : 'No')">Flash</p>
+          <p th:text="'Battery Life: ' + ${camera.batteryLife} + ' hours'">Battery Life</p>
+        </div>
+      </div>
+
+      <div class="reviews-section">
+        <h3>Reviews</h3>
+        <div class="reviews-grid">
+          <div class="review-card" th:each="review : ${reviews}">
+            <div class="review-header">
+              <strong th:text="${review.username}">Username</strong>
+              <em class="review-date" th:text="${review.reviewDate}">Date</em>
+              <span class="review-rating" th:text="'★ ' + ${review.rating} + '/5'"></span>
+            </div>
+            <span th:text="${review.comment}">Comment</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-section">
+    <a th:href="@{/homepage}" class="back-button">Back</a>
+    <form th:action="@{/addToCart}" method="post">
+      <input type="hidden" name="productId" th:value="${product.productId}"/>
+      <label for="quantity">Quantity:</label>
+      <input id="quantity" type="number" name="quantity" value="1" min="1"/>
+      <input type="hidden" name="userId" value="11"/>
+      <button type="submit">Add to Cart</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -29,4 +29,8 @@ public interface CartRepository extends JpaRepository<Cart, CartId> {
     @Modifying
     @Query(value = "UPDATE Cart SET Quantity = ?3 WHERE UserID = ?1 AND ProductID = ?2", nativeQuery = true)
     void editQuantity(Integer userId, Integer productId, Integer quantity);
+
+    @Modifying
+    @Query(value = "INSERT INTO Cart VALUES (?1, ?2, ?3)", nativeQuery = true)
+    void save(Integer userId, Integer productId, Integer quantity);
 }
