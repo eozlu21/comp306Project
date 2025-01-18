@@ -9,9 +9,10 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect # Specify MySQL dialect
     hibernate:
-      ddl-auto: none
+      ddl-auto: update # Automatically update schema for development (use validate in production)
       naming:
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    show-sql: true
+    show-sql: true # Display SQL queries in logs

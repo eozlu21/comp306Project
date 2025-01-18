@@ -40,7 +40,15 @@ public class ProfileService {
             return new OrdersWithProductsDTO(order, products);
         }).collect(Collectors.toList());
     }
-    public void updateUserProfile(User user) {
-        userRepository.save(user); // Save updated user details
+    public void updateUserProfile(User updatedUser) {
+        User existingUser = userRepository.findById(updatedUser.getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        // Retain the existing password if the new password is blank
+        if (updatedUser.getPassword() == null || updatedUser.getPassword().isEmpty()) {
+            updatedUser.setPassword(existingUser.getPassword());
+        }
+        userRepository.save(updatedUser);
     }
+
+
 }

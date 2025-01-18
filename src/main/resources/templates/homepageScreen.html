@@ -13,9 +13,7 @@
             <button type="button" class="search-button">🔍</button>
         </div>
         <div class="button-container">
-            <button>Wishlist</button>
             <button>ShoppingCart</button>
-            <button>Orders</button>
             <a th:href="@{/profile(userID=${userId})}" class="profile-btn">Profile</a>
         </div>
 
@@ -47,7 +45,7 @@
                 </div>
 
                 <!-- Show Details Button -->
-                <a class="details-button" th:href="@{/productDetails/{id}(id=${product.productId})}">
+                <a class="details-button" th:href="@{/productDetails/{id}(id=${product.productId}, userID=${userId})}">
                     Show Details
                 </a>
             </div>

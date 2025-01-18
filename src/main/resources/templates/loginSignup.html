@@ -17,6 +17,7 @@
     <form th:action="@{/login}" th:object="${loginDTO}" method="post">
       <input type="text" th:field="*{username}" placeholder="Username" required>
       <input type="password" th:field="*{password}" placeholder="Password" required>
+      <div th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></div>
       <button type="submit">Login</button>
     </form>
   </div>
@@ -31,9 +32,11 @@
       <input type="password" th:field="*{password}" placeholder="Password" required>
       <input type="text" th:field="*{phoneNumber}" placeholder="Phone Number">
       <input type="text" th:field="*{address}" placeholder="Address" required>
+      <div th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></div>
       <button type="submit">Signup</button>
     </form>
   </div>
+
 </div>
 
 <script>

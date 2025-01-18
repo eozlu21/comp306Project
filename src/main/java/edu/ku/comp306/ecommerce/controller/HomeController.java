@@ -16,7 +16,7 @@ public class HomeController {
 
     private final ProductRepository productRepository;
 
-    @GetMapping("/")
+    @GetMapping("/ex")
     public String getHomePage(Model model) {
         // Fetch all products from the database
         List<Product> products = productRepository.findAll();

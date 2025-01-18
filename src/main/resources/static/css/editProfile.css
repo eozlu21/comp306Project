@@ -7,8 +7,8 @@ body {
 }
 
 .edit-profile-container {
-    max-width: 600px;
-    margin: 50px auto;
+    max-width: 500px; /* Set a max width for the form */
+    margin: 50px auto; /* Center the form */
     background: white;
     padding: 20px;
     border-radius: 10px;
@@ -18,16 +18,19 @@ body {
 .edit-profile-container h1 {
     text-align: center;
     margin-bottom: 20px;
+    color: #1e293b;
 }
 
 form {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: column; /* Stack form fields vertically */
+    gap: 15px; /* Add space between fields */
 }
 
 label {
     font-weight: bold;
+    color: #1e293b;
+    margin-bottom: 5px;
 }
 
 input {
@@ -35,37 +38,70 @@ input {
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    outline: none;
+    width: 100%; /* Ensure inputs take full width of the container */
+    transition: border-color 0.2s;
 }
 
-.save-button, .cancel-button {
+input:focus {
+    border-color: #3b82f6;
+}
+
+input::placeholder {
+    color: #94a3b8;
+    font-style: italic;
+}
+
+button.save-button {
     padding: 10px;
     text-align: center;
     font-weight: bold;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.save-button {
     background-color: #3b82f6;
     color: white;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
 }
 
-.save-button:hover {
+button.save-button:hover {
     background-color: #2563eb;
 }
 
-.cancel-button {
+a.cancel-button {
     display: block;
-    margin-top: 10px;
-    text-decoration: none;
-    background-color: #e63946;
-    color: white;
     text-align: center;
     padding: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    background-color: #e63946;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
 }
 
-.cancel-button:hover {
+a.cancel-button:hover {
     background-color: #d32f2f;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .edit-profile-container {
+        padding: 15px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    input {
+        font-size: 14px;
+    }
+
+    button.save-button, a.cancel-button {
+        font-size: 14px;
+    }
 }

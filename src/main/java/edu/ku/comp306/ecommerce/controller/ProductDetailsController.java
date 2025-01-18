@@ -28,7 +28,7 @@ public class ProductDetailsController {
 
     @GetMapping("/productDetails/{id}")
     public String getProductDetails(
-            @PathVariable("productId") Integer productId,
+            @PathVariable("id") Integer productId,
             @RequestParam("userID") Integer userId,
             Model model) {
         // 1) Get the base Product
@@ -70,6 +70,6 @@ public class ProductDetailsController {
         // your service logic to add (or update) the product in the Cart
         cartService.addToCart(userId, productId, quantity);
 
-        return "redirect:/productDetails/" + productId;
+        return "redirect:/productDetails/" + productId + "?userID=" + userId;
     }
 }

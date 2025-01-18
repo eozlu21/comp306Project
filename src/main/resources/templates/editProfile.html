@@ -10,6 +10,7 @@
   <h1>Edit Profile</h1>
   <form th:action="@{/updateProfile}" th:object="${user}" method="post">
     <input type="hidden" th:field="*{userId}">
+
     <label for="firstName">First Name</label>
     <input type="text" id="firstName" th:field="*{firstName}" required>
 
@@ -24,6 +25,12 @@
 
     <label for="email">Email</label>
     <input type="email" id="email" th:field="*{email}" required>
+
+    <label for="username">Username</label>
+    <input type="text" id="username" th:field="*{username}" placeholder="Leave blank to keep current username">
+
+    <label for="password">New Password</label>
+    <input type="password" id="password" th:field="*{password}" placeholder="Leave blank to keep current password">
 
     <button type="submit" class="save-button">Save Changes</button>
   </form>

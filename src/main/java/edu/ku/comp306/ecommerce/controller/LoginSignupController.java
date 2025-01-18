@@ -30,21 +30,26 @@ public class LoginSignupController {
             session.setAttribute("user", user);
             return "redirect:/homepage?userID=" + user.getUserId();
         } else {
+            model.addAttribute("loginDTO", loginDTO); // Re-add loginDTO to the model
+            model.addAttribute("user", new User());   // Ensure user object is present for the signup form
             model.addAttribute("errorMessage", "Invalid username or password.");
-            return "loginSignup";
+            return "loginSignup"; // Return the login/signup page with the error message
         }
     }
+
 
     @PostMapping("/signup")
     public String handleSignup(@ModelAttribute User user, Model model) {
         if (userService.isEmailTaken(user.getEmail())) {
+            model.addAttribute("loginDTO", new LoginDTO()); // Ensure loginDTO is present
+            model.addAttribute("user", user);              // Retain the user data in the form
             model.addAttribute("errorMessage", "Email is already registered.");
-            return "loginSignup";
+            return "loginSignup"; // Return the login/signup page with the error message
         }
-
         userService.registerUser(user);
         return "redirect:/homepage?userID=" + user.getUserId();
     }
+
 
     @GetMapping("/logout")
     public String handleLogout(HttpSession session) {
