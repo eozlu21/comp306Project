@@ -28,4 +28,18 @@ public class ProductService {
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
+
+    // Search method for products
+    public List<Product> searchProducts(String keyword) {
+        return productRepository.searchProducts(keyword);
+    }
+
+    public List<Product> sortProductsByPrice(String order) {
+        if ("asc".equalsIgnoreCase(order)) {
+            return productRepository.sortByPriceAsc();
+        } else if ("desc".equalsIgnoreCase(order)) {
+            return productRepository.sortByPriceDesc();
+        }
+        return productRepository.findAll();  // Default case
+    }
 }

@@ -9,8 +9,21 @@
     <header>
         <h1>Home Screen</h1>
         <div class="search-bar">
-            <input type="text" class="search-box" placeholder="Search for other products">
-            <button type="button" class="search-button">🔍</button>
+            <form th:action="@{/search}" method="get">
+                <input type="text" name="keyword" class="search-box" placeholder="Search for products...">
+                <button type="submit" class="search-button">🔍</button>
+            </form>
+        </div>
+
+        <!-- Sort by Price -->
+        <div class="sort-container">
+            <form th:action="@{/sort}" method="get">
+                <label for="sortOrder">Sort by Price:</label>
+                <select name="order" id="sortOrder" onchange="this.form.submit()">
+                    <option value="asc" th:selected="${sortOrder == 'asc'}">Low to High</option>
+                    <option value="desc" th:selected="${sortOrder == 'desc'}">High to Low</option>
+                </select>
+            </form>
         </div>
         <!-- Category Filter Buttons -->
         <div class="category-buttons">

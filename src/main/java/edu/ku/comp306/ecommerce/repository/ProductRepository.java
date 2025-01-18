@@ -32,4 +32,16 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     """)
     List<Product> findProductsByCategory(@Param("category") String category);
 
+    // Search products by name or brand (case-insensitive)
+    @Query("SELECT p FROM Product p WHERE LOWER(p.productName) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
+            "OR LOWER(p.brand) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+    List<Product> searchProducts(@Param("keyword") String keyword);
+
+    // Sort products by price ascending
+    @Query("SELECT p FROM Product p ORDER BY p.price ASC")
+    List<Product> sortByPriceAsc();
+
+    // Sort products by price descending
+    @Query("SELECT p FROM Product p ORDER BY p.price DESC")
+    List<Product> sortByPriceDesc();
 }

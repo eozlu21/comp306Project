@@ -226,3 +226,12 @@ aside button:hover {
     background-color: #0056b3;
 }
 
+.sort-container {
+    margin-top: 10px;
+}
+
+.sort-container select {
+    padding: 5px;
+    font-size: 14px;
+}
+
