@@ -12,6 +12,12 @@
             <input type="text" class="search-box" placeholder="Search for other products">
             <button type="button" class="search-button">🔍</button>
         </div>
+        <!-- Category Filter Buttons -->
+        <div class="category-buttons">
+            <button onclick="filterByCategory('phone')">Phones</button>
+            <button onclick="filterByCategory('laptop')">Laptops</button>
+            <button onclick="filterByCategory('camera')">Cameras</button>
+        </div>
         <div class="button-container">
             <button>ShoppingCart</button>
             <a th:href="@{/profile(userID=${userId})}" class="profile-btn">Profile</a>
@@ -52,5 +58,13 @@
         </div>
     </main>
 </div>
+
+<!-- JavaScript for Category Filtering -->
+<script>
+    function filterByCategory(category) {
+        window.location.href = '/products/' + category;
+    }
+</script>
+
 </body>
 </html>

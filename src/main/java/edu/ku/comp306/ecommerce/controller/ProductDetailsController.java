@@ -72,4 +72,41 @@ public class ProductDetailsController {
 
         return "redirect:/productDetails/" + productId + "?userID=" + userId;
     }
+
+    @GetMapping("/products/{category}")
+    public String getProductsByCategory(@PathVariable("category") String category, Model model) {
+        List<Product> products;
+
+        switch (category.toLowerCase()) {
+            case "laptop":
+                products = laptopRepository.findAll()
+                        .stream()
+                        .map(laptop -> productService.getProductById(laptop.getProductId()))
+                        .toList();
+                break;
+
+            case "phone":
+                products = phoneRepository.findAll()
+                        .stream()
+                        .map(phone -> productService.getProductById(phone.getProductId()))
+                        .toList();
+                break;
+
+            case "camera":
+                products = cameraRepository.findAll()
+                        .stream()
+                        .map(camera -> productService.getProductById(camera.getProductId()))
+                        .toList();
+                break;
+
+            default:
+                products = productService.getAllProducts();
+                break;
+        }
+
+        model.addAttribute("products", products);
+        model.addAttribute("category", category);
+
+        return "product-list";
+    }
 }

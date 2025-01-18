@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="/css/shoppingCart.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Your Shopping Cart</h1>
+    </header>
+
+    <main>
+        <div class="cart-items">
+            <table>
+                <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Iterate over the cart items -->
+                <tr th:each="cartItem : ${cartItems}">
+                    <td>
+                        <img th:src="${cartItem.product.imageURL}" alt="Product Image" class="product-image">
+                        <p th:text="${cartItem.product.productName}">Product Name</p>
+                    </td>
+                    <td th:text="${cartItem.product.price}">Price</td>
+                    <td>
+                        <input type="number" class="quantity-input" th:value="${cartItem.quantity}" min="1">
+                    </td>
+                    <td th:text="${cartItem.product.price * cartItem.quantity}">Total</td>
+                    <td>
+                        <button class="remove-button" th:onclick="'/cart/remove/' + ${cartItem.product.id}">Remove</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="cart-summary">
+            <p>Total Items: <span th:text="${cartSummary.totalItems}">3</span></p>
+            <p>Total Price: <span th:text="${cartSummary.totalPrice}">$500.00</span></p>
+        </div>
+
+        <div class="cart-actions">
+            <button onclick="window.location.href='/products'" class="continue-shopping-button">Continue Shopping</button>
+            <button onclick="window.location.href='/checkout'" class="checkout-button">Proceed to Checkout</button>
+        </div>
+    </main>
+</div>
+</body>
+</html>
