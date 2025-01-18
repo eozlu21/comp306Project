@@ -1,0 +1,152 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* Header */
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+}
+
+/* Cart Items Table */
+.cart-items table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-align: left;
+}
+
+.cart-items table thead {
+    background-color: #f0f0f0;
+}
+
+.cart-items table th, 
+.cart-items table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-items table th {
+    font-weight: bold;
+}
+
+.cart-items table img {
+    width: 80px;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.cart-items table .product-image {
+    display: block;
+    max-height: 75px;
+    border-radius: 4px;
+}
+
+.cart-items table .quantity-input {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+}
+
+.cart-items table .remove-button {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.cart-items table .remove-button:hover {
+    background-color: #c82333;
+}
+
+/* Cart Summary */
+.cart-summary {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.cart-summary p {
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.cart-summary span {
+    font-weight: normal;
+    color: #007bff;
+}
+
+/* Cart Actions */
+.cart-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.cart-actions .continue-shopping-button,
+.cart-actions .checkout-button {
+    color: white;
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+    text-decoration: none;
+}
+
+.cart-actions .continue-shopping-button:hover,
+.cart-actions .checkout-button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cart-items table img {
+        width: 50px;
+    }
+
+    .cart-items table .quantity-input {
+        width: 40px;
+    }
+
+    .cart-actions .continue-shopping-button,
+    .cart-actions .checkout-button {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+}
