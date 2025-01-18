@@ -34,4 +34,21 @@ public interface ReviewedRepository extends JpaRepository<Reviewed, ReviewedId> 
                 r.ProductID = :productId
             """, nativeQuery = true)
     List<UserReviewDTO> findReviewsForProduct(@Param("productId") Integer productId);
+
+    @Query(value = """
+            SELECT
+                u.username AS username,
+                r.UserID AS userId,
+                r.ProductID AS productId,
+                r.ReviewDate AS reviewDate,
+                r.ReviewRating AS rating,
+                r.Comment AS comment
+            FROM
+                User u
+            JOIN
+                Reviewed r ON u.UserID = r.UserID
+            WHERE
+                r.UserID = :userId
+            """, nativeQuery = true)
+    List<UserReviewDTO> findReviewsByUser(@Param("userId") Integer userId);
 }

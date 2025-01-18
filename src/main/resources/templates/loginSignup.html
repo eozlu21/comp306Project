@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Login/Signup</title>
+  <link rel="stylesheet" href="/css/loginSignup.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+  <div class="tabs">
+    <button class="tab-link active" onclick="openTab(event, 'login')">Login</button>
+    <button class="tab-link" onclick="openTab(event, 'signup')">Signup</button>
+  </div>
+
+  <div id="login" class="tab-content active">
+    <h1>Login</h1>
+    <form th:action="@{/login}" th:object="${loginDTO}" method="post">
+      <input type="text" th:field="*{username}" placeholder="Username" required>
+      <input type="password" th:field="*{password}" placeholder="Password" required>
+      <div th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></div>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <div id="signup" class="tab-content">
+    <h1>Signup</h1>
+    <form th:action="@{/signup}" th:object="${user}" method="post">
+      <input type="text" th:field="*{firstName}" placeholder="First Name" required>
+      <input type="text" th:field="*{lastName}" placeholder="Last Name" required>
+      <input type="text" th:field="*{username}" placeholder="Username" required>
+      <input type="email" th:field="*{email}" placeholder="Email" required>
+      <input type="password" th:field="*{password}" placeholder="Password" required>
+      <input type="text" th:field="*{phoneNumber}" placeholder="Phone Number">
+      <input type="text" th:field="*{address}" placeholder="Address" required>
+      <div th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></div>
+      <button type="submit">Signup</button>
+    </form>
+  </div>
+
+</div>
+
+<script>
+  function openTab(evt, tabName) {
+    // Hide all tab contents
+    const tabContents = document.querySelectorAll(".tab-content");
+    tabContents.forEach(tab => tab.classList.remove("active"));
+
+    // Remove active class from all tab links
+    const tabLinks = document.querySelectorAll(".tab-link");
+    tabLinks.forEach(link => link.classList.remove("active"));
+
+    // Show current tab and set it as active
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+  }
+</script>
+</body>
+</html>

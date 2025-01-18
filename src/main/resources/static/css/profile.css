@@ -1,0 +1,131 @@
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+    color: #334155;
+}
+
+.profile-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.details h2 {
+    font-size: 1.8rem;
+    color: #1e293b;
+    margin: 0;
+}
+
+.details p {
+    margin: 5px 0;
+    color: #64748b;
+}
+
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.edit-profile-button, .logout-button, .back-button {
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-profile-button {
+    background-color: #10b981; /* Green for edit */
+}
+
+.edit-profile-button:hover {
+    background-color: #059669; /* Darker green on hover */
+}
+
+.logout-button {
+    background-color: #e63946; /* Red for logout */
+}
+
+.logout-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
+.back-button {
+    background-color: #3b82f6; /* Blue for back button */
+}
+
+.back-button:hover {
+    background-color: #2563eb; /* Darker blue on hover */
+}
+
+.profile-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.reviews-section, .orders-section {
+    background-color: #f8fafc;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.reviews-grid {
+    display: grid;
+    gap: 16px;
+}
+
+.review-card {
+    background-color: white;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stars {
+    font-size: 1.2rem;
+    color: #fbbf24;
+}
+
+.orders-grid {
+    display: grid;
+    gap: 16px;
+}
+
+.order-card {
+    background-color: white;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-products {
+    margin-top: 10px;
+    padding: 8px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.order-card p,
+.order-products p {
+    margin: 4px 0;
+    color: #64748b;
+}

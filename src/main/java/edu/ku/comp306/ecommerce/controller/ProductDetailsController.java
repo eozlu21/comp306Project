@@ -27,7 +27,10 @@ public class ProductDetailsController {
     private final CartService cartService;
 
     @GetMapping("/productDetails/{id}")
-    public String getProductDetails(@PathVariable("id") Integer productId, Model model) {
+    public String getProductDetails(
+            @PathVariable("id") Integer productId,
+            @RequestParam("userID") Integer userId,
+            Model model) {
         // 1) Get the base Product
         Product product = productService.getProductById(productId);
         if (product == null) {
@@ -46,6 +49,7 @@ public class ProductDetailsController {
         model.addAttribute("laptop", laptop);
         model.addAttribute("phone", phone);
         model.addAttribute("camera", camera);
+        model.addAttribute("userId", userId);
 
         // You can also fetch reviews if you have a separate table for that
         List<UserReviewDTO> reviews = reviewedRepository.findReviewsForProduct(productId);
@@ -66,7 +70,7 @@ public class ProductDetailsController {
         // your service logic to add (or update) the product in the Cart
         cartService.addToCart(userId, productId, quantity);
 
-        return "redirect:/productDetails/" + productId;
+        return "redirect:/productDetails/" + productId + "?userID=" + userId;
     }
 
     @GetMapping("/products/{category}")

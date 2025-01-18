@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Profile Page</title>
+  <link rel="stylesheet" href="/css/profile.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="profile-container">
+  <div class="profile-header">
+    <div class="details">
+      <h2 th:text="${user.firstName + ' ' + user.lastName}">Name</h2>
+      <p th:text="'Phone Number: ' + ${user.phoneNumber}">Phone Number</p>
+      <p th:text="'Address: ' + ${user.address}">Address</p>
+      <p th:text="'Email: ' + ${user.email}">Email</p>
+    </div>
+    <div class="profile-actions">
+      <a th:href="@{/editProfile(userID=${user.userId})}" class="edit-profile-button">Edit Profile</a>
+      <a th:href="@{/logout}" class="logout-button">Logout</a>
+      <a th:href="@{/homepage(userID=${user.userId})}" class="back-button">Back to Homepage</a>
+    </div>
+  </div>
+
+  <!-- Reviews and Orders Sections -->
+  <div class="profile-sections">
+    <div class="reviews-section">
+      <h3>Reviews</h3>
+      <div class="reviews-grid">
+        <div class="review-card" th:each="review : ${reviews}">
+          <div class="review-header">
+            <strong th:text="${review.username}">Username</strong>
+            <em class="review-date" th:text="${review.reviewDate}">Date</em>
+            <span class="review-rating" th:text="'★ ' + ${review.rating} + '/5'"></span>
+          </div>
+          <span th:text="${review.comment}">Comment</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="orders-section">
+      <h3>My Orders</h3>
+      <div class="orders-grid" th:each="order : ${orders}">
+        <div class="order-card">
+          <p th:text="'Order ID: ' + ${order.orderId != null ? order.orderId : 'N/A'}">Order ID</p>
+          <p th:text="'Status: ' + (${order.orderStatus != null && order.orderStatus ? 'Approved' : 'Cart')}">Order Status</p>
+          <div class="order-products" th:if="${order.products != null}" th:each="product : ${order.products}">
+            <p th:text="'Product ID: ' + ${product.productId != null ? product.productId : 'N/A'}">Product ID</p>
+            <p th:text="'Quantity: ' + ${product.quantity != null ? product.quantity : 0}">Quantity</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
