@@ -1,6 +1,7 @@
 package edu.ku.comp306.ecommerce.service;
 
 import edu.ku.comp306.ecommerce.dto.OrdersWithProductsDTO;
+import edu.ku.comp306.ecommerce.dto.UserReviewDTO;
 import edu.ku.comp306.ecommerce.entity.Orders;
 import edu.ku.comp306.ecommerce.entity.OrderContains;
 import edu.ku.comp306.ecommerce.entity.Reviewed;
@@ -11,6 +12,9 @@ import edu.ku.comp306.ecommerce.repository.ReviewedRepository;
 import edu.ku.comp306.ecommerce.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.sql.Date;
+import java.time.ZoneId;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,10 +30,6 @@ public class ProfileService {
 
     public User getUserById(Integer userId) {
         return userRepository.findById(userId).orElse(null);
-    }
-
-    public List<Reviewed> getUserReviews(Integer userId) {
-        return reviewedRepository.findByUserId(userId);
     }
 
     public List<OrdersWithProductsDTO> getUserOrdersWithProducts(Integer userId) {

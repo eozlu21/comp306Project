@@ -24,13 +24,15 @@
   <!-- Reviews and Orders Sections -->
   <div class="profile-sections">
     <div class="reviews-section">
-      <h3>My Reviews</h3>
-      <div class="reviews-grid" th:each="review : ${reviews}">
-        <div class="review-card">
-          <div class="stars" th:text="'★'.repeat(${review.rating}) + '☆'.repeat(5 - ${review.rating})"></div>
-          <p th:text="'Username: ' + ${review.username}">Username</p>
-          <p th:text="${review.comment}">Comment</p>
-          <p th:text="'Date: ' + ${review.date}">Date</p>
+      <h3>Reviews</h3>
+      <div class="reviews-grid">
+        <div class="review-card" th:each="review : ${reviews}">
+          <div class="review-header">
+            <strong th:text="${review.username}">Username</strong>
+            <em class="review-date" th:text="${review.reviewDate}">Date</em>
+            <span class="review-rating" th:text="'★ ' + ${review.rating} + '/5'"></span>
+          </div>
+          <span th:text="${review.comment}">Comment</span>
         </div>
       </div>
     </div>
@@ -39,11 +41,11 @@
       <h3>My Orders</h3>
       <div class="orders-grid" th:each="order : ${orders}">
         <div class="order-card">
-          <p th:text="'Order ID: ' + ${order.orderId}">Order ID</p>
-          <p th:text="'Status: ' + (${order.orderStatus} ? 'Approved' : 'Cart')">Order Status</p>
-          <div class="order-products" th:each="product : ${order.products}">
-            <p th:text="'Product ID: ' + ${product.productId}">Product ID</p>
-            <p th:text="'Quantity: ' + ${product.quantity}">Quantity</p>
+          <p th:text="'Order ID: ' + ${order.orderId != null ? order.orderId : 'N/A'}">Order ID</p>
+          <p th:text="'Status: ' + (${order.orderStatus != null && order.orderStatus ? 'Approved' : 'Cart')}">Order Status</p>
+          <div class="order-products" th:if="${order.products != null}" th:each="product : ${order.products}">
+            <p th:text="'Product ID: ' + ${product.productId != null ? product.productId : 'N/A'}">Product ID</p>
+            <p th:text="'Quantity: ' + ${product.quantity != null ? product.quantity : 0}">Quantity</p>
           </div>
         </div>
       </div>

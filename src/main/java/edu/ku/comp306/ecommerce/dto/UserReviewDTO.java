@@ -1,5 +1,6 @@
 package edu.ku.comp306.ecommerce.dto;
 
+import edu.ku.comp306.ecommerce.entity.Reviewed;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,4 +18,5 @@ public class UserReviewDTO {
     private Date reviewDate;
     private Integer rating;
     private String comment;
+
 }
