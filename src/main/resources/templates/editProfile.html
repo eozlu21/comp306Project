@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Edit Profile</title>
+  <link rel="stylesheet" href="/css/editProfile.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="edit-profile-container">
+  <h1>Edit Profile</h1>
+  <form th:action="@{/updateProfile}" th:object="${user}" method="post">
+    <input type="hidden" th:field="*{userId}">
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" th:field="*{firstName}" required>
+
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" th:field="*{lastName}" required>
+
+    <label for="phoneNumber">Phone Number</label>
+    <input type="text" id="phoneNumber" th:field="*{phoneNumber}" required>
+
+    <label for="address">Address</label>
+    <input type="text" id="address" th:field="*{address}" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" th:field="*{email}" required>
+
+    <button type="submit" class="save-button">Save Changes</button>
+  </form>
+  <a th:href="@{/profile(userID=${user.userId})}" class="cancel-button">Cancel</a>
+</div>
+</body>
+</html>

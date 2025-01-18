@@ -1,0 +1,71 @@
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+    color: #334155;
+}
+
+.edit-profile-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.edit-profile-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.save-button, .cancel-button {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-button {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.save-button:hover {
+    background-color: #2563eb;
+}
+
+.cancel-button {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    background-color: #e63946;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.cancel-button:hover {
+    background-color: #d32f2f;
+}

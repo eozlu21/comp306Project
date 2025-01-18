@@ -16,8 +16,9 @@
             <button>Wishlist</button>
             <button>ShoppingCart</button>
             <button>Orders</button>
-            <button>Profile</button>
+            <a th:href="@{/profile(userID=${userId})}" class="profile-btn">Profile</a>
         </div>
+
     </header>
 
     <main>

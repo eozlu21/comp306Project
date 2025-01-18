@@ -4,6 +4,7 @@ import edu.ku.comp306.ecommerce.entity.Product;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -17,9 +18,10 @@ public class HomepageScreenController {
     }
 
     @GetMapping("/homepage")
-    public String getHomePage(Model model) {
-        List<Product> products = productService.getRandomProducts(); // Fetch random 5 products
+    public String getHomePage(@RequestParam("userID") Integer userId, Model model) {
+        List<Product> products = productService.getRandomProducts(); // Fetch random products
         model.addAttribute("products", products);
+        model.addAttribute("userId", userId); // Pass userID to the view
         return "homepageScreen";
     }
 }

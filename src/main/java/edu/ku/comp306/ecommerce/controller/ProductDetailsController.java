@@ -27,7 +27,10 @@ public class ProductDetailsController {
     private final CartService cartService;
 
     @GetMapping("/productDetails/{id}")
-    public String getProductDetails(@PathVariable("id") Integer productId, Model model) {
+    public String getProductDetails(
+            @PathVariable("productId") Integer productId,
+            @RequestParam("userID") Integer userId,
+            Model model) {
         // 1) Get the base Product
         Product product = productService.getProductById(productId);
         if (product == null) {
@@ -46,6 +49,7 @@ public class ProductDetailsController {
         model.addAttribute("laptop", laptop);
         model.addAttribute("phone", phone);
         model.addAttribute("camera", camera);
+        model.addAttribute("userId", userId);
 
         // You can also fetch reviews if you have a separate table for that
         List<UserReviewDTO> reviews = reviewedRepository.findReviewsForProduct(productId);
