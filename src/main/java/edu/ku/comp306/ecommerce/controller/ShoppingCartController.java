@@ -29,7 +29,7 @@ public class ShoppingCartController {
      * @return The shopping cart HTML view.
      */
     @GetMapping("/cart")
-    public String showShoppingCart(@RequestParam("userId") Integer userId, Model model) {
+    public String showShoppingCart(@RequestParam(value = "userId", defaultValue = "11") Integer userId, Model model) {
         // Retrieve all cart items for the user
         List<CartItemDto> cartItems = cartService.getCartItems(userId);
 
