@@ -102,6 +102,7 @@ public class ProductDetailsController {
 
         model.addAttribute("products", products);
         model.addAttribute("category", category);
+        model.addAttribute("isSearch", false);
 
         return "product-list";
     }
