@@ -1,16 +1,12 @@
 package edu.ku.comp306.ecommerce.controller;
 
-import edu.ku.comp306.ecommerce.dto.CartItemDto;
-import edu.ku.comp306.ecommerce.dto.CartSummaryDto;
 import edu.ku.comp306.ecommerce.service.CartService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @Controller
-@RequestMapping("/cart/{userId}")
 public class ShoppingCartController {
 
     private final CartService cartService;
@@ -26,17 +22,15 @@ public class ShoppingCartController {
      * @param model  The model to pass data to the Thymeleaf template.
      * @return The shopping cart HTML view.
      */
-    @GetMapping
+    @GetMapping("/cart/{userId}")
     public String showShoppingCart(@PathVariable("userId") Integer userId, Model model) {
         // Retrieve all cart items for the user
-        List<CartItemDto> cartItems = cartService.getCartItems(userId);
-
-        // Calculate the cart summary (total items and price)
-        CartSummaryDto cartSummary = cartService.getCartSummary(userId);
+        var cart = cartService.getCart(userId);
 
         // Add cart data to the model
-        model.addAttribute("cartItems", cartItems);
-        model.addAttribute("cartSummary", cartSummary);
+        model.addAttribute("cartItems", cart.getCartItems());
+        model.addAttribute("cart", cart);
+        model.addAttribute("userId", userId);
 
         return "shoppingCart";
     }
@@ -48,7 +42,7 @@ public class ShoppingCartController {
      * @param productId The ID of the product to remove.
      * @return Redirect to the shopping cart page.
      */
-    @PostMapping("/remove/{productId}")
+    @PostMapping("/cart/remove/{userId}/{productId}")
     public String removeProductFromCart(@PathVariable("userId") Integer userId,
                                         @PathVariable("productId") Integer productId) {
         cartService.removeProductFromCart(userId, productId);
@@ -63,11 +57,17 @@ public class ShoppingCartController {
      * @param quantity  The new quantity for the product.
      * @return Redirect to the shopping cart page.
      */
-    @PostMapping("/update/{productId}")
+    @PostMapping("cart/update/{userId}/{productId}")
     public String updateProductQuantity(@PathVariable("userId") Integer userId,
                                         @PathVariable("productId") Integer productId,
                                         @RequestParam("quantity") Integer quantity) {
         cartService.updateProductQuantity(userId, productId, quantity);
         return "redirect:/cart/" + userId;
+    }
+
+    @PostMapping("cart/checkout/{userId}")
+    public String checkout(@PathVariable("userId") Integer userId) {
+        // todo: nereye atsın karar verelim ona göre ayarlarız
+        return "redirect:/profile/" + userId;
     }
 }

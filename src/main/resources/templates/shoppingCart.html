@@ -32,24 +32,32 @@
                     </td>
                     <td th:text="${cartItem.product.price}">Price</td>
                     <td>
-                        <input type="number" class="quantity-input" th:value="${cartItem.quantity}" min="1">
+                        <label>
+                        <form th:action="'/cart/update/' + ${userId} + '/' + ${cartItem.product.productId}" method="post">
+                            <input type="number" name="quantity" class="quantity-input" th:value="${cartItem.quantity}" min="1"
+                                   onchange="this.form.submit()">
+                        </form>
+                        </label>
                     </td>
                     <td th:text="${cartItem.product.price * cartItem.quantity}">Total</td>
                     <td>
-                        <button class="remove-button" th:onclick="'/cart/remove/' + ${cartItem.product.id}">Remove</button>
+
+                    <form th:action="'/cart/remove/' + ${userId} + '/' + ${cartItem.product.productId}" method="post">
+                            <button class="remove-button" type="submit">Remove</button>
+                        </form>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="cart-summary">
-            <p>Total Items: <span th:text="${cartSummary.totalItems}">3</span></p>
-            <p>Total Price: <span th:text="${cartSummary.totalPrice}">$500.00</span></p>
+       <div class="cart-summary">
+            <p>Total Items: <span th:text="${cart.getNumberOfItems()}">3</span></p>
+            <p>Total Price: <span th:text="${cart.getTotalPrice()}">$500.00</span></p>
         </div>
 
         <div class="cart-actions">
-            <button onclick="window.location.href='/products'" class="continue-shopping-button">Continue Shopping</button>
+            <a th:href="@{/homepage}" class="continue-shopping-button">Continue Shopping</a>
             <button onclick="window.location.href='/checkout'" class="checkout-button">Proceed to Checkout</button>
         </div>
     </main>
