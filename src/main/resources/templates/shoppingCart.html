@@ -57,7 +57,7 @@
         </div>
 
         <div class="cart-actions">
-            <a th:href="@{/homepage}" class="continue-shopping-button">Continue Shopping</a>
+            <a th:href="@{/homepage(userID=${userId})}" class="continue-shopping-button">Continue Shopping</a>
             <button onclick="window.location.href='/checkout'" class="checkout-button">Proceed to Checkout</button>
         </div>
     </main>

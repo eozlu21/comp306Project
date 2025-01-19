@@ -22,8 +22,8 @@ public class ShoppingCartController {
      * @param model  The model to pass data to the Thymeleaf template.
      * @return The shopping cart HTML view.
      */
-    @GetMapping("/cart/{userId}")
-    public String showShoppingCart(@PathVariable("userId") Integer userId, Model model) {
+    @GetMapping("/cart")
+    public String showShoppingCart(@RequestParam("userID") Integer userId, Model model) {
         // Retrieve all cart items for the user
         var cart = cartService.getCart(userId);
 
@@ -42,11 +42,11 @@ public class ShoppingCartController {
      * @param productId The ID of the product to remove.
      * @return Redirect to the shopping cart page.
      */
-    @PostMapping("/cart/remove/{userId}/{productId}")
-    public String removeProductFromCart(@PathVariable("userId") Integer userId,
+    @PostMapping("/cart/remove/{userID}/{productId}")
+    public String removeProductFromCart(@PathVariable("userID") Integer userId,
                                         @PathVariable("productId") Integer productId) {
         cartService.removeProductFromCart(userId, productId);
-        return "redirect:/cart/" + userId;
+        return "redirect:/cart?userID=" + userId;
     }
 
     /**
@@ -57,17 +57,17 @@ public class ShoppingCartController {
      * @param quantity  The new quantity for the product.
      * @return Redirect to the shopping cart page.
      */
-    @PostMapping("cart/update/{userId}/{productId}")
-    public String updateProductQuantity(@PathVariable("userId") Integer userId,
+    @PostMapping("cart/update/{userID}/{productId}")
+    public String updateProductQuantity(@PathVariable("userID") Integer userId,
                                         @PathVariable("productId") Integer productId,
                                         @RequestParam("quantity") Integer quantity) {
         cartService.updateProductQuantity(userId, productId, quantity);
-        return "redirect:/cart/" + userId;
+        return "redirect:/cart?userID=" + userId;
     }
 
-    @PostMapping("cart/checkout/{userId}")
-    public String checkout(@PathVariable("userId") Integer userId) {
+    @PostMapping("cart/checkout")
+    public String checkout(@RequestParam("userID") Integer userId) {
         // todo: nereye atsın karar verelim ona göre ayarlarız
-        return "redirect:/profile/" + userId;
+        return "redirect:/profile?userID=" + userId;
     }
 }
