@@ -51,4 +51,24 @@ public interface ReviewedRepository extends JpaRepository<Reviewed, ReviewedId> 
                 r.UserID = :userId
             """, nativeQuery = true)
     List<UserReviewDTO> findReviewsByUser(@Param("userId") Integer userId);
+
+    @Query(value = """
+            SELECT
+                AVG(r.ReviewRating)
+            FROM
+                Reviewed r
+            WHERE
+                r.ProductID = :productId
+            """, nativeQuery = true)
+    double getAverageRating(Integer productId);
+
+    @Query(value = """
+            SELECT
+                COUNT(r.ReviewRating)
+            FROM
+                Reviewed r
+            WHERE
+                r.ProductID = :productId
+            """, nativeQuery = true)
+    long getRatedCount(Integer productId);
 }

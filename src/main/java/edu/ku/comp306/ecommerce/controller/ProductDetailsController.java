@@ -6,17 +6,23 @@ import edu.ku.comp306.ecommerce.repository.CameraRepository;
 import edu.ku.comp306.ecommerce.repository.PhoneRepository;
 import edu.ku.comp306.ecommerce.repository.ReviewedRepository;
 import edu.ku.comp306.ecommerce.service.CartService;
+import edu.ku.comp306.ecommerce.service.OrderService;
 import edu.ku.comp306.ecommerce.service.ProductService;
 import edu.ku.comp306.ecommerce.repository.LaptopRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
+
+import static java.lang.Math.round;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class ProductDetailsController {
 
     private final ProductService productService;
@@ -25,51 +31,63 @@ public class ProductDetailsController {
     private final CameraRepository cameraRepository;
     private final ReviewedRepository reviewedRepository;
     private final CartService cartService;
+    private final OrderService orderService;
 
     @GetMapping("/productDetails/{id}")
     public String getProductDetails(
             @PathVariable("id") Integer productId,
             @RequestParam("userID") Integer userId,
             Model model) {
-        // 1) Get the base Product
+
         Product product = productService.getProductById(productId);
         if (product == null) {
-            // handle not found
             return "redirect:/homepage";
         }
 
-        // 2) Check if it’s a laptop
-        //    If in your DB, a laptop record only exists if productId is in the Laptop table:
+
         Laptop laptop = laptopRepository.findById(productId).orElse(null);
-        // similarly for phone, camera, etc.
         Phone phone = phoneRepository.findById(productId).orElse(null);
         Camera camera = cameraRepository.findById(productId).orElse(null);
-        // 3) Add them to the model
+        boolean hasPurchased = orderService.hasPurchased(userId, productId);
+        double averageRating = reviewedRepository.getAverageRating(productId);
+        String formattedAvgRating = String.format("%.1f", averageRating);
+        long ratedCount = reviewedRepository.getRatedCount(productId);
+
         model.addAttribute("product", product);
         model.addAttribute("laptop", laptop);
         model.addAttribute("phone", phone);
         model.addAttribute("camera", camera);
         model.addAttribute("userId", userId);
+        model.addAttribute("hasPurchased", hasPurchased);
+        model.addAttribute("averageRating", formattedAvgRating);
+        model.addAttribute("ratedCount", ratedCount);
 
-        // You can also fetch reviews if you have a separate table for that
+
         List<UserReviewDTO> reviews = reviewedRepository.findReviewsForProduct(productId);
         model.addAttribute("reviews", reviews);
 
         return "productDetails";
     }
 
-    // -----------------------------------------------------------
-    // (Optional) Add-to-Cart handling directly here or in a CartController
-    // -----------------------------------------------------------
+    @PostMapping("/addReview")
+    public String addReview(
+            @RequestParam("productId") Integer productId,
+            @RequestParam("userId") Integer userId,
+            @RequestParam("rating") Integer rating,
+            @RequestParam(value = "comment", required = false) String comment
+    ) {
+        // Save the review using the repository
+        reviewedRepository.save(new Reviewed(userId, productId, LocalDate.now(), rating, comment));
+        return "redirect:/productDetails/" + productId + "?userID=" + userId;
+    }
+
     @PostMapping("/addToCart")
     public String addToCart(
             @RequestParam("productId") Integer productId,
             @RequestParam("quantity") Integer quantity,
             @RequestParam("userId") Integer userId
     ) {
-        // your service logic to add (or update) the product in the Cart
         cartService.addToCart(userId, productId, quantity);
-
         return "redirect:/productDetails/" + productId + "?userID=" + userId;
     }
 

@@ -44,4 +44,6 @@ public class CartService {
     public void addToCart(Integer userId, Integer productId, Integer quantity) {
         cartRepository.saveCart(userId, productId, quantity);
     }
+
+
 }
