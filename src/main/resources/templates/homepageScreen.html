@@ -19,7 +19,7 @@
             <button onclick="filterByCategory('camera')">Cameras</button>
         </div>
         <div class="button-container">
-            <button>ShoppingCart</button>
+            <a th:href="@{/cart(userID=${userId})}" class="profile-btn">Shopping Cart</a>
             <a th:href="@{/profile(userID=${userId})}" class="profile-btn">Profile</a>
         </div>
 
