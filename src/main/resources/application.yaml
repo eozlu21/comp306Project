@@ -9,10 +9,17 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect # Specify MySQL dialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: update # Automatically update schema for development (use validate in production)
+      ddl-auto: validate # Use 'validate' in production to avoid schema updates
       naming:
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    show-sql: true # Display SQL queries in logs
+    show-sql: false # Disable SQL logs to reduce console I/O load
+
+  hikari:
+    maximum-pool-size: 5 # Reduce max connections to fit free-tier limits
+    minimum-idle: 2 # Minimum idle connections
+    idle-timeout: 10000 # 10 seconds for idle connections
+    max-lifetime: 1800000 # 30 minutes for connection lifetime
+    connection-timeout: 30000 # Timeout for connection attempts
