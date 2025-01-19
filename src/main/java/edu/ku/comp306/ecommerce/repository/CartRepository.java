@@ -2,6 +2,7 @@ package edu.ku.comp306.ecommerce.repository;
 
 import edu.ku.comp306.ecommerce.entity.Cart;
 import edu.ku.comp306.ecommerce.entity.CartId;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -23,14 +24,16 @@ public interface CartRepository extends JpaRepository<Cart, CartId> {
 
     // Delete a specific cart item by userId and productId
     @Modifying
+    @Transactional
     @Query(value = "DELETE FROM Cart WHERE UserID = ?1 AND ProductID = ?2", nativeQuery = true)
     void deleteByUserIdAndProductId(Integer userId, Integer productId);
 
     @Modifying
+    @Transactional
     @Query(value = "UPDATE Cart SET Quantity = ?3 WHERE UserID = ?1 AND ProductID = ?2", nativeQuery = true)
     void editQuantity(Integer userId, Integer productId, Integer quantity);
 
     @Modifying
     @Query(value = "INSERT INTO Cart VALUES (?1, ?2, ?3)", nativeQuery = true)
-    void save(Integer userId, Integer productId, Integer quantity);
+    void saveCart(Integer userId, Integer productId, Integer quantity);
 }
