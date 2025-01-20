@@ -42,13 +42,22 @@
                 </div>
 
                 <!-- Reviews Section -->
-                <div class="reviews">
-                    <h3>Reviews</h3>
-                    <ul>
-                        <li>Username1: "Great product!"</li>
-                        <li>Username2: "Satisfied with the quality."</li>
-                        <li>Username3: "Worth the price!"</li>
-                    </ul>
+                <div class="reviews-section">
+                    <h3>
+                        Reviews <span class="review-rating" th:text="'★ ' + ${productRatings[product.productId]} + '/5'"></span>
+                        (<span th:text="${productReviews[product.productId]?.size()}">0</span>)
+                    </h3>
+                    <div class="reviews-grid">
+                        <div class="review-card" th:each="review : ${productReviews[product.productId]}">
+                            <div class="review-header">
+                                <strong th:text="${review.username}">Username</strong>
+                                <span class="membership-badge" th:text="${review.membershipType}">Membership</span>
+                                <em class="review-date" th:text="${review.reviewDate}">Date</em>
+                                <span class="review-rating" th:text="'★ ' + ${review.rating} + '/5'"></span>
+                            </div>
+                            <span th:text="${review.comment}">Comment</span>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Show Details Button -->
