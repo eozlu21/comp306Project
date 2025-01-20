@@ -1,5 +1,6 @@
 package edu.ku.comp306.ecommerce.controller;
 
+import edu.ku.comp306.ecommerce.service.CartService;
 import edu.ku.comp306.ecommerce.service.OrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CheckoutController {
 
     private final OrderService orderService;
+    private final CartService cartService;
 
-    public CheckoutController(OrderService orderService) {
+    public CheckoutController(OrderService orderService, CartService cartService) {
         this.orderService = orderService;
+        this.cartService = cartService;
     }
 
     /**
@@ -28,6 +31,7 @@ public class CheckoutController {
                                    @RequestParam("orderID") Integer orderId,
                                    Model model) {
         // Retrieve the details of the recent order
+        cartService.deleteCart(userId);
         var orderDTO = orderService.getOrderDetails(userId, orderId);
 
         // Adding order details to the model

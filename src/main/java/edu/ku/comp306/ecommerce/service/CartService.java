@@ -51,4 +51,8 @@ public class CartService {
         var cart = getCart(userId);
         orderService.createOrderContains(userId, orderId, cart);
     }
+
+    public void deleteCart(Integer userId) {
+        cartRepository.deleteByUserId(userId);
+    }
 }
