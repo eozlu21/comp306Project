@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -25,9 +26,10 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer> {
     int getOrderedCount(Integer productId, Integer userId);
 
     @Modifying
-    @Query(value = "INSERT INTO Orders (UserID) VALUES (?1)", nativeQuery = true)
+    @Query(value = "INSERT INTO Orders (UserID, OrderDate) VALUES (?1, ?2)", nativeQuery = true)
     @Transactional
-    void insertOrder(Integer userId);
+    void insertOrder(Integer userId, LocalDate orderDate);
+
 
     @Query(value = "SELECT LAST_INSERT_ID()", nativeQuery = true)
     int getLastInsertId();

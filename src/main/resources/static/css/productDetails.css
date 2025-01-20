@@ -277,3 +277,13 @@ body {
         padding: 20px;
     }
 }
+
+.membership-badge {
+    background-color: #e0f7fa;
+    color: #00796b;
+    padding: 5px 10px;
+    margin-left: 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}

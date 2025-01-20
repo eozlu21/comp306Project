@@ -21,6 +21,7 @@ public interface ReviewedRepository extends JpaRepository<Reviewed, ReviewedId> 
     @Query(value = """
             SELECT
                 u.username AS username,
+                u.membershipType AS membershipType,
                 r.UserID AS userId,
                 r.ProductID AS productId,
                 r.ReviewDate AS reviewDate,
@@ -38,6 +39,7 @@ public interface ReviewedRepository extends JpaRepository<Reviewed, ReviewedId> 
     @Query(value = """
             SELECT
                 u.username AS username,
+                u.membershipType AS membershipType,
                 r.UserID AS userId,
                 r.ProductID AS productId,
                 r.ReviewDate AS reviewDate,

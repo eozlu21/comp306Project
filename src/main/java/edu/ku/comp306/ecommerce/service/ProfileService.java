@@ -42,7 +42,7 @@ public class ProfileService {
             }).collect(Collectors.toList());
 
             // Create and return the OrderDTO for this order
-            return new OrderDTO(order.getOrderId(), orderItems);
+            return new OrderDTO(order.getOrderId(), orderItems, order.getOrderDate());
         }).collect(Collectors.toList());
     }
     public void updateUserProfile(User updatedUser) {

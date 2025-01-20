@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 
 @Controller
 public class ShoppingCartController {
@@ -70,7 +72,7 @@ public class ShoppingCartController {
 
     @PostMapping("cart/checkout")
     public String checkout(@RequestParam("userID") Integer userId) {
-        var orderID = orderService.createOrderId(userId);
+        var orderID = orderService.createOrderId(userId, LocalDate.now());
         cartService.order(userId, orderID);
         return "redirect:/checkout?userID=" + userId + "&orderID=" + orderID;
     }

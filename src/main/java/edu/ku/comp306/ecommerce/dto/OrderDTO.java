@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -12,6 +13,7 @@ import java.util.List;
 public class OrderDTO {
     private Integer orderId;
     private List<OrderItemDto> orderItems;
+    private LocalDate orderDate;
 
     public int getNumberOfItems(){
         return orderItems.stream().mapToInt(OrderItemDto::getQuantity).sum();

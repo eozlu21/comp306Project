@@ -9,7 +9,10 @@
 <div class="profile-container">
   <div class="profile-header">
     <div class="details">
-      <h2 th:text="${user.firstName + ' ' + user.lastName}">Name</h2>
+      <h2 class="profile-name">
+        <span th:text="${user.firstName + ' ' + user.lastName}">Name</span>
+        <span class="membership-badge" th:text="${user.membershipType}">Membership</span>
+      </h2>
       <p th:text="'Phone Number: ' + ${user.phoneNumber}">Phone Number</p>
       <p th:text="'Address: ' + ${user.address}">Address</p>
       <p th:text="'Email: ' + ${user.email}">Email</p>
@@ -44,6 +47,7 @@
         <div class="order-card">
           <!-- Display Order Metadata -->
           <p th:text="'Order ID: ' + ${order.orderId}">Order ID</p>
+            <p th:text="'Order Date: ' + ${order.orderDate}">Order Date</p>
           <p th:text="'Total Items: ' + ${order.numberOfItems}">Total Items</p>
           <p th:text="'Total Price: $' + ${order.totalPrice}">Total Price</p>
 
