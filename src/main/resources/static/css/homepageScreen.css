@@ -251,7 +251,7 @@ main h2 {
 
 .review-rating {
     color: #ff9900; /* Bright orange for stars */
-    font-weight: bold;
+    font-weight: normal;
     margin-left: 5px;
 }
 

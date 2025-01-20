@@ -44,6 +44,9 @@ public class HomepageScreenController {
                 .collect(Collectors.toMap(
                         Product::getProductId,
                         product -> reviewedRepository.findReviewsForProduct(product.getProductId())
+                                .stream()
+                                .limit(2) // Limit the list to 2 reviews
+                                .collect(Collectors.toList())
                 ));
 
         // Add data to the model
