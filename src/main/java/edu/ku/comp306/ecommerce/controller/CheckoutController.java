@@ -33,8 +33,7 @@ public class CheckoutController {
         // Retrieve the details of the recent order
         cartService.deleteCart(userId);
         var orderDTO = orderService.getOrderDetails(userId, orderId);
-
-        // Adding order details to the model
+        
         model.addAttribute("order", orderDTO);
         model.addAttribute("userId", userId);
 
