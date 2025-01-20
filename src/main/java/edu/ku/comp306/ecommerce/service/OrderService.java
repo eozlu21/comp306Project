@@ -12,6 +12,7 @@ import edu.ku.comp306.ecommerce.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -27,8 +28,8 @@ public class OrderService {
         return orderCount > 0;
     }
 
-    public int createOrderId(int userId) {
-        ordersRepository.insertOrder(userId);
+    public int createOrderId(int userId, LocalDate orderDate) {
+        ordersRepository.insertOrder(userId, orderDate);
         return ordersRepository.getLastInsertId();
     }
 
@@ -63,6 +64,6 @@ public class OrderService {
                 .toList();
 
         // Create and return the OrderDTO
-        return new OrderDTO(orderId, orderItemDtoList);
+        return new OrderDTO(orderId, orderItemDtoList, order.getOrderDate());
     }
 }
