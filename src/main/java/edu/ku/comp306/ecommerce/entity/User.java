@@ -36,7 +36,6 @@ public class User {
     private String username;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "membershipType", nullable = false)
-    private MembershipType membershipType;
-
+    @Column(name = "MembershipType", nullable = false, columnDefinition = "varchar(255) default 'SILVER'")
+    private MembershipType membershipType = MembershipType.SILVER; // Default value
 }
