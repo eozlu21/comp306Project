@@ -13,8 +13,8 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    public List<Product> getRandomProducts() {
-        return productRepository.findRandomProducts();
+    public List<Product> getPopularProducts() {
+        return productRepository.findPopularProducts();
     }
 
     public Product getProductById(Integer productId) {

@@ -19,7 +19,7 @@ public class HomepageScreenController {
 
     @GetMapping("/homepage")
     public String getHomePage(@RequestParam("userID") Integer userId, Model model) {
-        List<Product> products = productService.getRandomProducts(); // Fetch random products
+        List<Product> products = productService.getPopularProducts(); // Fetch random products
         model.addAttribute("products", products);
         model.addAttribute("userId", userId); // Pass userID to the view
         return "homepageScreen";
