@@ -22,7 +22,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
             "JOIN OrderContains oc ON p.ProductID = oc.ProductID " +
             "GROUP BY p.ProductID " +
             "ORDER BY COUNT(oc.ProductID) DESC " +
-            "LIMIT 5",
+            "LIMIT 6",
             nativeQuery = true)
     List<Product> findPopularProducts();
 
