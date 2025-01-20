@@ -39,8 +39,8 @@ public interface CartRepository extends JpaRepository<Cart, CartId> {
     void editQuantity(Integer userId, Integer productId, Integer quantity);
 
     @Modifying
+    @Transactional
     @Query(value = "INSERT INTO Cart VALUES (?1, ?2, ?3)", nativeQuery = true)
     void saveCart(Integer userId, Integer productId, Integer quantity);
-
 
 }
