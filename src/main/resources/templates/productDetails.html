@@ -89,6 +89,7 @@
           <div class="review-card" th:each="review : ${reviews}">
             <div class="review-header">
               <strong th:text="${review.username}">Username</strong>
+              <span class="membership-badge" th:text="${review.membershipType}">Membership</span>
               <em class="review-date" th:text="${review.reviewDate}">Date</em>
               <span class="review-rating" th:text="'★ ' + ${review.rating} + '/5'"></span>
             </div>

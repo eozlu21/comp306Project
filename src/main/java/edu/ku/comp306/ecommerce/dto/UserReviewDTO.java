@@ -13,10 +13,12 @@ import java.util.Date;
 @Builder
 public class UserReviewDTO {
     private String username;
+    private String membershipType;
     private Integer userId;
     private Integer productId;
     private Date reviewDate;
     private Integer rating;
     private String comment;
+
 
 }
