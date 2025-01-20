@@ -1,5 +1,7 @@
 package edu.ku.comp306.ecommerce.entity;
 
+import edu.ku.comp306.ecommerce.enums.MembershipType;
+import edu.ku.comp306.ecommerce.enums.NetworkCompatibility;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -33,5 +35,8 @@ public class User {
     @Column(name = "username", nullable = true)
     private String username;
 
-    // TODO:  or Seller one-to-one relationships could be mapped here if needed
+    @Enumerated(EnumType.STRING)
+    @Column(name = "membershipType", nullable = false)
+    private MembershipType membershipType;
+
 }
