@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-import static java.lang.Math.round;
-
 @Controller
 @RequiredArgsConstructor
 @Slf4j
@@ -41,7 +39,7 @@ public class ProductDetailsController {
 
         Product product = productService.getProductById(productId);
         if (product == null) {
-            return "redirect:/homepage";
+            return "redirect:/homepage?userID=" + userId;
         }
 
 
@@ -49,7 +47,10 @@ public class ProductDetailsController {
         Phone phone = phoneRepository.findById(productId).orElse(null);
         Camera camera = cameraRepository.findById(productId).orElse(null);
         boolean hasPurchased = orderService.hasPurchased(userId, productId);
-        double averageRating = reviewedRepository.getAverageRating(productId);
+        Double averageRating = reviewedRepository.getAverageRating(productId);
+        if (averageRating == null) {
+            averageRating = 0.0;
+        }
         String formattedAvgRating = String.format("%.1f", averageRating);
         long ratedCount = reviewedRepository.getRatedCount(productId);
 

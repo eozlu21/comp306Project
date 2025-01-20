@@ -1,7 +1,7 @@
 package edu.ku.comp306.ecommerce.service;
 
-import edu.ku.comp306.ecommerce.dto.CartDto;
-import edu.ku.comp306.ecommerce.dto.CartItemDto;
+import edu.ku.comp306.ecommerce.dto.CartDTO;
+import edu.ku.comp306.ecommerce.dto.CartItemDTO;
 import edu.ku.comp306.ecommerce.repository.CartRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,11 +12,12 @@ public class CartService {
 
     private final CartRepository cartRepository;
     private final ProductService productService;
+    private final OrderService orderService;
 
-    public CartDto getCart(Integer userId) {
+    public CartDTO getCart(Integer userId) {
         var cartItems = cartRepository.findByUserId(userId);
-        var cartItemDtoList = cartItems.stream().map(e -> new CartItemDto(productService.getProductById(e.getProductId()), e.getQuantity())).toList();
-        return new CartDto(cartItemDtoList);
+        var cartItemDtoList = cartItems.stream().map(e -> new CartItemDTO(productService.getProductById(e.getProductId()), e.getQuantity())).toList();
+        return new CartDTO(cartItemDtoList);
     }
 
     /**
@@ -46,4 +47,8 @@ public class CartService {
     }
 
 
+    public void order(Integer userId, Integer orderId) {
+        var cart = getCart(userId);
+        orderService.createOrderContains(userId, orderId, cart);
+    }
 }

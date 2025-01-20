@@ -1,6 +1,5 @@
 package edu.ku.comp306.ecommerce.controller;
 
-import edu.ku.comp306.ecommerce.entity.Buyer;
 import edu.ku.comp306.ecommerce.entity.Product;
 import edu.ku.comp306.ecommerce.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;

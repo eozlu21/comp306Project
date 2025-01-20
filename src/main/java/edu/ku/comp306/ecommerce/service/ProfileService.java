@@ -1,20 +1,14 @@
 package edu.ku.comp306.ecommerce.service;
 
-import edu.ku.comp306.ecommerce.dto.OrdersWithProductsDTO;
-import edu.ku.comp306.ecommerce.dto.UserReviewDTO;
+import edu.ku.comp306.ecommerce.dto.OrderDTO;
+import edu.ku.comp306.ecommerce.dto.OrderItemDto;
 import edu.ku.comp306.ecommerce.entity.Orders;
 import edu.ku.comp306.ecommerce.entity.OrderContains;
-import edu.ku.comp306.ecommerce.entity.Reviewed;
+import edu.ku.comp306.ecommerce.entity.Product;
 import edu.ku.comp306.ecommerce.entity.User;
-import edu.ku.comp306.ecommerce.repository.OrderContainsRepository;
-import edu.ku.comp306.ecommerce.repository.OrdersRepository;
-import edu.ku.comp306.ecommerce.repository.ReviewedRepository;
-import edu.ku.comp306.ecommerce.repository.UserRepository;
+import edu.ku.comp306.ecommerce.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.sql.Date;
-import java.time.ZoneId;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,20 +18,31 @@ import java.util.stream.Collectors;
 public class ProfileService {
 
     private final UserRepository userRepository;
-    private final ReviewedRepository reviewedRepository;
     private final OrdersRepository ordersRepository;
     private final OrderContainsRepository orderContainsRepository;
+    private final ProductRepository productRepository;
 
     public User getUserById(Integer userId) {
         return userRepository.findById(userId).orElse(null);
     }
 
-    public List<OrdersWithProductsDTO> getUserOrdersWithProducts(Integer userId) {
+    public List<OrderDTO> getUserOrdersWithProducts(Integer userId) {
         List<Orders> orders = ordersRepository.findByUserId(userId);
 
         return orders.stream().map(order -> {
-            List<OrderContains> products = orderContainsRepository.findByOrderId(order.getOrderId());
-            return new OrdersWithProductsDTO(order, products);
+            // Retrieve the list of OrderContains for the given order
+            List<OrderContains> orderContainsList = orderContainsRepository.findByOrderId(order.getOrderId());
+
+            // Map each OrderContains instance to an OrderItemDto
+            List<OrderItemDto> orderItems = orderContainsList.stream().map(orderContains -> {
+                // Assuming ProductRepository is injected into the service
+                Product product = productRepository.findById(orderContains.getProductId())
+                        .orElseThrow(() -> new RuntimeException("Product not found"));
+                return new OrderItemDto(product, orderContains.getQuantity());
+            }).collect(Collectors.toList());
+
+            // Create and return the OrderDTO for this order
+            return new OrderDTO(order.getOrderId(), orderItems);
         }).collect(Collectors.toList());
     }
     public void updateUserProfile(User updatedUser) {
