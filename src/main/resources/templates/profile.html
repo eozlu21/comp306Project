@@ -47,6 +47,7 @@
         <div class="order-card">
           <!-- Display Order Metadata -->
           <p th:text="'Order ID: ' + ${order.orderId}">Order ID</p>
+            <p th:text="'Order Date: ' + ${order.orderDate}">Order Date</p>
           <p th:text="'Total Items: ' + ${order.numberOfItems}">Total Items</p>
           <p th:text="'Total Price: $' + ${order.totalPrice}">Total Price</p>
 
