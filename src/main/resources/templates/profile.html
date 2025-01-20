@@ -39,13 +39,34 @@
 
     <div class="orders-section">
       <h3>My Orders</h3>
+      <!-- Iterate over user orders -->
       <div class="orders-grid" th:each="order : ${orders}">
         <div class="order-card">
-          <p th:text="'Order ID: ' + ${order.orderId != null ? order.orderId : 'N/A'}">Order ID</p>
-          <p th:text="'Status: ' + (${order.orderStatus != null && order.orderStatus ? 'Approved' : 'Cart')}">Order Status</p>
-          <div class="order-products" th:if="${order.products != null}" th:each="product : ${order.products}">
-            <p th:text="'Product ID: ' + ${product.productId != null ? product.productId : 'N/A'}">Product ID</p>
-            <p th:text="'Quantity: ' + ${product.quantity != null ? product.quantity : 0}">Quantity</p>
+          <!-- Display Order Metadata -->
+          <p th:text="'Order ID: ' + ${order.orderId}">Order ID</p>
+          <p th:text="'Total Items: ' + ${order.numberOfItems}">Total Items</p>
+          <p th:text="'Total Price: $' + ${order.totalPrice}">Total Price</p>
+
+          <!-- Display Order Items -->
+          <div class="order-products">
+            <ul>
+              <li th:each="item : ${order.orderItems}">
+                <div class="product-item">
+                  <!-- Product Image -->
+                  <img th:src="${item.product.imageURL}" alt="Product Image" class="product-image"/>
+
+                  <!-- Product Information -->
+                  <div class="product-info">
+                    <p th:text="'Product: ' + ${item.product.productName}">Product Name</p>
+                    <p th:text="'Brand: ' + ${item.product.brand}">Brand</p>
+                    <p th:text="'Color: ' + ${item.product.color}">Color</p>
+                    <p th:text="'Price: $' + ${item.product.price}">Price</p>
+                    <p th:text="'Quantity: ' + ${item.quantity}">Quantity</p>
+                    <p th:text="'Total: $' + (${item.product.price} * ${item.quantity})">Total</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

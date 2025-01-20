@@ -58,7 +58,10 @@
 
         <div class="cart-actions">
             <a th:href="@{/homepage(userID=${userId})}" class="continue-shopping-button">Continue Shopping</a>
-            <button onclick="window.location.href='/checkout'" class="checkout-button">Proceed to Checkout</button>
+            <form th:action="@{/cart/checkout(userID=${userId})}" method="post">
+                <input type="hidden" name="userID" th:value="${userId}">
+                <button type="submit" class="checkout-button">Proceed to Checkout</button>
+            </form>
         </div>
     </main>
 </div>

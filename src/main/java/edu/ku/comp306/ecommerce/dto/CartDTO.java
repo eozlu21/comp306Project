@@ -9,11 +9,11 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CartDto {
-    private List<CartItemDto> cartItems; // Quantity of the product in the cart
+public class CartDTO {
+    private List<CartItemDTO> cartItems; // Quantity of the product in the cart
 
     public int getNumberOfItems() {
-        return cartItems.stream().mapToInt(CartItemDto::getQuantity).sum();
+        return cartItems.stream().mapToInt(CartItemDTO::getQuantity).sum();
     }
 
     public double getTotalPrice() {

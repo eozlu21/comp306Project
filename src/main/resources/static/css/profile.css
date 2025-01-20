@@ -1,54 +1,64 @@
+/* General Styles */
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background-color: #f5f7fa;
     margin: 0;
     padding: 0;
     color: #334155;
+    line-height: 1.6;
 }
 
+a {
+    text-decoration: none;
+}
+
+/* Profile Container */
 .profile-container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 40px auto;
-    padding: 20px;
+    padding: 30px;
     background-color: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
 }
 
 .profile-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 20px;
 }
 
 .details h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: #1e293b;
     margin: 0;
 }
 
 .details p {
-    margin: 5px 0;
+    margin: 6px 0;
     color: #64748b;
+    font-size: 14px;
 }
 
 .profile-actions {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .edit-profile-button, .logout-button, .back-button {
     text-align: center;
-    padding: 10px;
+    padding: 12px 15px;
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 8px;
     text-decoration: none;
-    color: white;
-    font-size: 14px;
+    color: #ffffff;
+    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .edit-profile-button {
@@ -75,6 +85,7 @@ body {
     background-color: #2563eb; /* Darker blue on hover */
 }
 
+/* Profile Sections */
 .profile-sections {
     display: flex;
     flex-direction: column;
@@ -87,6 +98,16 @@ body {
     border-radius: 12px;
 }
 
+/* Reviews Section */
+.reviews-section h3,
+.orders-section h3 {
+    font-size: 1.6rem;
+    color: #1e293b;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
 .reviews-grid {
     display: grid;
     gap: 16px;
@@ -94,38 +115,104 @@ body {
 
 .review-card {
     background-color: white;
-    padding: 12px;
+    padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.stars {
-    font-size: 1.2rem;
-    color: #fbbf24;
+.review-header strong {
+    color: #1e293b;
 }
 
+.review-header em {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+/* Orders Section */
 .orders-grid {
     display: grid;
-    gap: 16px;
+    gap: 20px;
 }
 
 .order-card {
-    background-color: white;
-    padding: 12px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.order-card p {
+    margin: 6px 0;
+    color: #64748b;
 }
 
 .order-products {
-    margin-top: 10px;
-    padding: 8px;
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f9fafb;
     border-radius: 8px;
+    border: 1px solid #e5e7eb;
 }
 
-.order-card p,
-.order-products p {
+/* Product List */
+.order-products ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.product-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Product Images */
+.product-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+/* Product Info */
+.product-info {
+    flex: 1;
+}
+
+.product-info p {
     margin: 4px 0;
+    font-size: 14px;
+    color: #475569;
+}
+
+.product-info p:nth-child(1) {
+    font-weight: bold;
+    color: #1e293b;
+}
+
+.product-info p:nth-child(2) {
+    font-size: 13px;
     color: #64748b;
+}
+
+/* Footer Styling */
+footer {
+    margin: 20px auto;
+    padding: 10px;
+    text-align: center;
+    color: #7b8794;
+    font-size: 12px;
 }

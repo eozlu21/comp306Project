@@ -60,7 +60,7 @@ public interface ReviewedRepository extends JpaRepository<Reviewed, ReviewedId> 
             WHERE
                 r.ProductID = :productId
             """, nativeQuery = true)
-    double getAverageRating(Integer productId);
+    Double getAverageRating(Integer productId);
 
     @Query(value = """
             SELECT

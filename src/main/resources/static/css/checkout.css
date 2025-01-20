@@ -1,0 +1,196 @@
+/* Reset and Base Styles */
+body {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f6f8fa;
+    color: #3a3a3a;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Container Styles */
+.checkout-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(50, 50, 93, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #e4e6eb;
+}
+
+/* Header Styles */
+header {
+    margin-bottom: 2rem;
+    text-align: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #e4e6eb;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #4c84d3 0%, #1e63a8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+/* Main Content Layout */
+.main-content {
+    display: grid;
+    gap: 2rem;
+}
+
+/* Order Summary Styles */
+.order-summary {
+    background: linear-gradient(135deg, #4c84d3 0%, #366aa8 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    color: #ffffff;
+    box-shadow: 0 10px 20px rgba(50, 50, 93, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-summary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(50, 50, 93, 0.15);
+}
+
+.order-summary h2 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.order-summary p {
+    margin: 0.8rem 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+}
+
+/* Order Items Styles */
+.order-items {
+    background-color: #f9fafa;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #e4e6eb;
+    box-shadow: 0 6px 15px rgba(50, 50, 93, 0.05);
+}
+
+.order-items h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.6rem;
+    color: #2a4d69;
+    font-weight: 700;
+}
+
+/* Table Styles */
+.order-items table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(50, 50, 93, 0.05);
+}
+
+.order-items th {
+    background: linear-gradient(135deg, #4c84d3 0%, #366aa8 100%);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.order-items td {
+    padding: 1rem;
+    border-bottom: 1px solid #e4e6eb;
+    color: #3a3a3a;
+    font-size: 1rem;
+}
+
+/* Product Image Styles */
+.product-image {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 1rem;
+    box-shadow: 0 4px 8px rgba(50, 50, 93, 0.1);
+}
+
+.order-items td:first-child {
+    display: flex;
+    align-items: center;
+}
+
+/* Action Buttons */
+.checkout-actions {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.checkout-actions a {
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.back-home-button {
+    background-color: #ffffff;
+    color: #4c84d3;
+    border: 2px solid #4c84d3;
+}
+
+.back-home-button:hover {
+    background-color: #4c84d3;
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(76, 132, 211, 0.3);
+}
+
+.logout-button {
+    background: linear-gradient(135deg, #4c84d3 0%, #1e63a8 100%);
+    color: #ffffff;
+}
+
+.logout-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(76, 132, 211, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .checkout-container {
+        padding: 1.5rem;
+    }
+
+    .checkout-actions {
+        flex-direction: column;
+    }
+
+    .checkout-actions a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .order-items table {
+        display: block;
+        overflow-x: auto;
+    }
+}

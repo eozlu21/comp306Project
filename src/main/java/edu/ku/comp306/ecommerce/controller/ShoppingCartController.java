@@ -1,6 +1,7 @@
 package edu.ku.comp306.ecommerce.controller;
 
 import edu.ku.comp306.ecommerce.service.CartService;
+import edu.ku.comp306.ecommerce.service.OrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.*;
 public class ShoppingCartController {
 
     private final CartService cartService;
+    private final OrderService orderService;
 
-    public ShoppingCartController(CartService cartService) {
+    public ShoppingCartController(CartService cartService, OrderService orderService) {
         this.cartService = cartService;
+        this.orderService = orderService;
     }
 
     /**
@@ -67,7 +70,8 @@ public class ShoppingCartController {
 
     @PostMapping("cart/checkout")
     public String checkout(@RequestParam("userID") Integer userId) {
-        // todo: nereye atsın karar verelim ona göre ayarlarız
-        return "redirect:/profile?userID=" + userId;
+        var orderID = orderService.createOrderId(userId);
+        cartService.order(userId, orderID);
+        return "redirect:/checkout?userID=" + userId + "&orderID=" + orderID;
     }
 }

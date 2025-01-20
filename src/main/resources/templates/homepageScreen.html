@@ -8,6 +8,11 @@
 <div class="container">
     <header>
         <h1>Home Screen</h1>
+        <div class="button-container">
+            <a th:href="@{/cart(userID=${userId})}" class="profile-btn">Shopping Cart</a>
+            <a th:href="@{/profile(userID=${userId})}" class="profile-btn">Profile</a>
+        </div>
+
         <div class="search-bar">
             <input type="text" class="search-box" placeholder="Search for other products">
             <button type="button" class="search-button">🔍</button>
@@ -17,10 +22,6 @@
             <button onclick="filterByCategory('phone')">Phones</button>
             <button onclick="filterByCategory('laptop')">Laptops</button>
             <button onclick="filterByCategory('camera')">Cameras</button>
-        </div>
-        <div class="button-container">
-            <a th:href="@{/cart(userID=${userId})}" class="profile-btn">Shopping Cart</a>
-            <a th:href="@{/profile(userID=${userId})}" class="profile-btn">Profile</a>
         </div>
 
     </header>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="/css/checkout.css">
+</head>
+<body>
+<div class="checkout-container">
+    <header>
+        <h1>Order Successful!!</h1>
+    </header>
+
+    <main>
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <p><strong>Order ID:</strong> <span th:text="${order.orderId}">Order ID</span></p>
+            <p><strong>Total Items:</strong> <span th:text="${order.getNumberOfItems()}">0</span></p>
+            <p><strong>Total Price:</strong> $<span th:text="${order.getTotalPrice()}">0.00</span></p>
+        </div>
+
+        <div class="order-items">
+            <h2>Order Items</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${order.orderItems}">
+                    <td>
+                        <img th:src="${item.product.imageURL}" alt="Product Image" class="product-image"/>
+                        <p th:text="${item.product.productName}">Product Name</p>
+                    </td>
+                    <td th:text="${item.quantity}">0</td>
+                    <td th:text="${item.product.price}">0.00</td>
+                    <td th:text="${item.product.price * item.quantity}">0.00</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="checkout-actions">
+            <a th:href="@{/homepage(userID=${userId})}" class="back-home-button">Back to Homepage</a>
+            <a th:href="@{/logout}" class="logout-button">Logout</a>
+        </div>
+    </main>
+</div>
+</body>
+</html>
