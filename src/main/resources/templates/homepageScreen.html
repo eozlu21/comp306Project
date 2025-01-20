@@ -50,12 +50,12 @@
                     <div class="reviews-grid">
                         <div class="review-card" th:each="review : ${productReviews[product.productId]}">
                             <div class="review-header">
-                                <strong th:text="${review.username}">Username</strong>
+                                <span class="review-username" th:text="${review.username}">Username</span>
                                 <span class="membership-badge" th:text="${review.membershipType}">Membership</span>
-                                <em class="review-date" th:text="${review.reviewDate}">Date</em>
-                                <span class="review-rating" th:text="'★ ' + ${review.rating} + '/5'"></span>
+                                <span class="review-date" th:text="${review.reviewDate}">2025-01-20</span>
+                                <span class="review-rating" th:text="'★ ' + ${review.rating} + '/5'">5/5</span>
                             </div>
-                            <span th:text="${review.comment}">Comment</span>
+                            <p class="review-comment" th:text="${review.comment}">Comment</p>
                         </div>
                     </div>
                 </div>
