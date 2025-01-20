@@ -38,7 +38,6 @@ public class CartService {
      * @param quantity  The new quantity for the product.
      */
     public void updateProductQuantity(Integer userId, Integer productId, Integer quantity) {
-        // do wee need to check if does not exist??
         cartRepository.editQuantity(userId, productId, quantity);
     }
 

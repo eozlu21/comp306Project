@@ -33,5 +33,5 @@ public class User {
     @Column(name = "username", nullable = true)
     private String username;
 
-    // TODO: Buyer or Seller one-to-one relationships could be mapped here if needed
+    // TODO:  or Seller one-to-one relationships could be mapped here if needed
 }
