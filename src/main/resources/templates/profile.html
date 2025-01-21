@@ -49,7 +49,7 @@
           <p th:text="'Order ID: ' + ${order.orderId}">Order ID</p>
             <p th:text="'Order Date: ' + ${order.orderDate}">Order Date</p>
           <p th:text="'Total Items: ' + ${order.numberOfItems}">Total Items</p>
-          <p th:text="'Total Price: $' + ${order.totalPrice}">Total Price</p>
+          <p th:text="'Total Price: ₺' + ${order.totalPrice}">Total Price</p>
 
           <!-- Display Order Items -->
           <div class="order-products">
@@ -64,14 +64,23 @@
                     <p th:text="'Product: ' + ${item.product.productName}">Product Name</p>
                     <p th:text="'Brand: ' + ${item.product.brand}">Brand</p>
                     <p th:text="'Color: ' + ${item.product.color}">Color</p>
-                    <p th:text="'Price: $' + ${item.product.price}">Price</p>
+                    <p th:text="'Price: ₺' + ${item.product.price}">Price</p>
                     <p th:text="'Quantity: ' + ${item.quantity}">Quantity</p>
-                    <p th:text="'Total: $' + (${item.product.price} * ${item.quantity})">Total</p>
+                    <p th:text="'Total: ₺' + (${item.product.price} * ${item.quantity})">Total</p>
+                  </div>
+
+                  <!-- Show Details Button -->
+                  <div class="product-actions">
+                    <a class="details-button"
+                       th:href="@{/productDetails/{id}(id=${item.product.productId}, userID=${user.userId})}">
+                      Show Details
+                    </a>
                   </div>
                 </div>
               </li>
             </ul>
           </div>
+
         </div>
       </div>
     </div>
