@@ -25,6 +25,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
         """, nativeQuery = true)
     Double calculateTotalSpendingForLast30Days(@Param("userId") int userId);
 
-    String findMembershipType(@Param("userId") int userId);
-
 }
