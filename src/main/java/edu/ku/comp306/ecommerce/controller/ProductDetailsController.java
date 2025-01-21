@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -93,38 +95,40 @@ public class ProductDetailsController {
     }
 
     @GetMapping("/products/{category}")
-    public String getProductsByCategory(@PathVariable("category") String category, Model model) {
-        List<Product> products;
+    public String getProductsByCategory(
+            @PathVariable("category") String category,
+            @RequestParam("userID") Integer userId,
+            Model model) {
 
-        switch (category.toLowerCase()) {
-            case "laptop":
-                products = laptopRepository.findAll()
-                        .stream()
-                        .map(laptop -> productService.getProductById(laptop.getProductId()))
-                        .toList();
-                break;
+        // Fetch products for the specified category
+        List<Product> products = productService.getProductsByCategory(category);
 
-            case "phone":
-                products = phoneRepository.findAll()
-                        .stream()
-                        .map(phone -> productService.getProductById(phone.getProductId()))
-                        .toList();
-                break;
+        // Fetch average ratings for each product
+        Map<Integer, Double> productRatings = products.stream()
+                .collect(Collectors.toMap(
+                        Product::getProductId,
+                        product -> {
+                            Double avgRating = reviewedRepository.getAverageRating(product.getProductId());
+                            return avgRating != null ? avgRating : 0.0;
+                        }
+                ));
 
-            case "camera":
-                products = cameraRepository.findAll()
-                        .stream()
-                        .map(camera -> productService.getProductById(camera.getProductId()))
-                        .toList();
-                break;
+        // Fetch reviews for each product
+        Map<Integer, List<UserReviewDTO>> productReviews = products.stream()
+                .collect(Collectors.toMap(
+                        Product::getProductId,
+                        product -> reviewedRepository.findReviewsForProduct(product.getProductId())
+                                .stream()
+                                .limit(2) // Limit the list to 2 reviews
+                                .collect(Collectors.toList())
+                ));
 
-            default:
-                products = productService.getAllProducts();
-                break;
-        }
-
+        // Add data to the model
         model.addAttribute("products", products);
         model.addAttribute("category", category);
+        model.addAttribute("userId", userId);
+        model.addAttribute("productRatings", productRatings);
+        model.addAttribute("productReviews", productReviews);
 
         return "product-list";
     }

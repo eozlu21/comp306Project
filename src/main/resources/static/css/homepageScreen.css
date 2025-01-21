@@ -322,3 +322,48 @@ main h2 {
     background-color: #014a9c;
 }
 
+.back-to-homepage-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4c84d3; /* Blue background */
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-to-homepage-btn:hover {
+    background-color: #1e63a8; /* Darker blue on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(50, 50, 93, 0.2);
+}
+
+.category-buttons a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4c84d3; /* Blue background */
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.category-buttons a:hover {
+    background-color: #1e63a8; /* Darker blue on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(50, 50, 93, 0.2);
+}
+
+.category-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 20px;
+}

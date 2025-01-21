@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:text="${category} + ' Products'">Category Products</title>
+  <link rel="stylesheet" href="/css/homepageScreen.css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1 th:text="'Products in ' + ${category}">Category Products</h1>
+    <div class="button-container">
+      <a th:href="@{/cart(userID=${userId})}" class="profile-btn">Shopping Cart</a>
+      <a th:href="@{/profile(userID=${userId})}" class="profile-btn">Profile</a>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" class="search-box" placeholder="Search for other products">
+      <button type="button" class="search-button">🔍</button>
+    </div>
+
+    <!-- Category Filter Links -->
+    <div class="category-buttons">
+      <a th:href="@{/products/phone(userID=${userId})}" class="category-btn">Phones</a>
+      <a th:href="@{/products/laptop(userID=${userId})}" class="category-btn">Laptops</a>
+      <a th:href="@{/products/camera(userID=${userId})}" class="category-btn">Cameras</a>
+    </div>
+
+    <!-- Back to Homepage Button -->
+    <div class="back-button-container">
+      <a th:href="@{/homepage(userID=${userId})}" class="back-to-homepage-btn">🏠 Back to Homepage</a>
+    </div>
+
+  </header>
+
+  <main>
+    <h2 th:text="'Products in ' + ${category} + ':'">Selected Category</h2>
+    <div class="product-list">
+      <!-- Check if there are products -->
+      <div th:if="${products.size() > 0}">
+        <!-- Iterate over the products list -->
+        <div class="product" th:each="product : ${products}">
+          <!-- Product Image -->
+          <img th:src="${product.imageURL}" alt="Product Image" class="product-image">
+
+          <!-- Product Details -->
+          <div class="product-details">
+            <p class="product-name" th:text="${product.productName}">Product Name</p>
+            <p class="brand" th:text="'Brand: ' + ${product.brand}">Brand</p>
+            <p class="price" th:text="'Price: $' + ${product.price}">Price</p>
+          </div>
+
+          <!-- Reviews Section -->
+          <div class="reviews-section">
+            <h3>
+              Reviews <span class="review-rating" th:text="'★ ' + ${productRatings[product.productId]} + '/5'"></span>
+              (<span th:text="${productReviews[product.productId]?.size()}">0</span>)
+            </h3>
+            <div class="reviews-grid">
+              <div class="review-card" th:each="review : ${productReviews[product.productId]}">
+                <div class="review-header">
+                  <span class="review-username" th:text="${review.username}">Username</span>
+                  <span class="membership-badge" th:text="${review.membershipType}">Membership</span>
+                  <span class="review-date" th:text="${review.reviewDate}">2025-01-20</span>
+                  <span class="review-rating" th:text="'★ ' + ${review.rating} + '/5'">5/5</span>
+                </div>
+                <p class="review-comment" th:text="${review.comment}">Comment</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Show Details Button -->
+          <a class="details-button" th:href="@{/productDetails/{id}(id=${product.productId}, userID=${userId})}">
+            Show Details
+          </a>
+        </div>
+      </div>
+
+      <!-- No Products Message -->
+      <div th:if="${products.size() == 0}">
+        <p>No products found in this category.</p>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

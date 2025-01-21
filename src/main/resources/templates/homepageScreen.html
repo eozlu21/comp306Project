@@ -19,9 +19,9 @@
         </div>
         <!-- Category Filter Buttons -->
         <div class="category-buttons">
-            <button onclick="filterByCategory('phone')">Phones</button>
-            <button onclick="filterByCategory('laptop')">Laptops</button>
-            <button onclick="filterByCategory('camera')">Cameras</button>
+            <a th:href="@{/products/phone(userID=${userId})}" class="category-btn">Phones</a>
+            <a th:href="@{/products/laptop(userID=${userId})}" class="category-btn">Laptops</a>
+            <a th:href="@{/products/camera(userID=${userId})}" class="category-btn">Cameras</a>
         </div>
 
     </header>
@@ -69,12 +69,6 @@
     </main>
 </div>
 
-<!-- JavaScript for Category Filtering -->
-<script>
-    function filterByCategory(category) {
-        window.location.href = '/products/' + category;
-    }
-</script>
 
 </body>
 </html>
