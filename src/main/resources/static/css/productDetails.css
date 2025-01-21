@@ -68,16 +68,49 @@ body {
     margin-top: 16px;
 }
 
-/* Reviews */
+/* Reviews Section */
 .reviews-section {
     margin-top: 24px;
+    background-color: #f8fafc;
+    padding: 24px;
+    border-radius: 12px;
 }
 
+/*
+   IMPORTANT: This .reviews-grid block sets a max-height and overflow-y: auto,
+   causing the reviews to scroll if there's more content than fits.
+*/
 .reviews-grid {
     margin-top: 16px;
     display: grid;
     grid-template-columns: 1fr;
     gap: 16px;
+
+    /* Set a fixed max-height; feel free to adjust the value */
+    max-height: 300px;
+    overflow-y: auto;
+
+    /* Extra padding so the scrollbar doesn't overlap text */
+    padding-right: 16px;
+}
+
+/* Add custom scrollbar styling (WebKit-only but commonly used) */
+.reviews-grid::-webkit-scrollbar {
+    width: 6px;
+}
+
+.reviews-grid::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.reviews-grid::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.reviews-grid::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
 }
 
 .review-card {
@@ -104,71 +137,80 @@ body {
     color: #ffa500;
 }
 
-/* Cart Section - place Back button & Add-to-Cart form on the same line */
+/* Cart Section */
+/* Cart Section */
 .cart-section {
     margin-top: 32px;
     display: flex;
     align-items: center;
-    /* 'justify-content: space-between;' if you want them on opposite ends;
-       or 'gap: 16px;' if you want them side-by-side on the left. */
-    justify-content: flex-start;
     gap: 16px;
 }
 
-/* Reviews Grid: internal scrollbar if more than 2 reviews */
-.reviews-grid {
-    margin-top: 16px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-
-    /* Adjust max-height as desired (in px, rem, or vh).
-       Once the content exceeds 300px (for example), a vertical scrollbar appears. */
-    max-height: 300px;
-    overflow-y: auto;
+/* Make the form within cart-section align items in a row */
+.cart-section form {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* adjust spacing as desired */
 }
 
-/* Back Button, Cart Button, Buy Now Button */
+/* Style the quantity label */
+.cart-section form label[for="quantity"] {
+    font-weight: 500;
+    margin-right: 4px;
+}
+
+/* Style the quantity input */
+.cart-section input[type="number"] {
+    width: 60px; /* adjust width as desired */
+    padding: 8px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    text-align: center; /* center the numeric value */
+    font-size: 14px;
+    color: #334155;
+    background-color: #fff; /* ensures it matches the form background */
+}
+
+/* Hide the default spinner in some browsers */
+.cart-section input[type="number"]::-webkit-inner-spin-button,
+.cart-section input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Remove arrows in Firefox */
+.cart-section input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Slight hover/focus effect on the number input */
+.cart-section input[type="number"]:hover,
+.cart-section input[type="number"]:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+
 .back-button,
 .cart-section form button,
 .buy-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #4CAF50;  /* Primary color */
-    color: #ffffff;            /* White text */
-    border: none;             /* Remove border */
-    border-radius: 4px;       /* Rounded corners */
-    cursor: pointer;          /* Pointer cursor on hover */
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
     font-weight: 500;
-    text-decoration: none;    /* For links */
+    text-decoration: none;
     transition: background-color 0.2s ease;
 }
 
 .back-button:hover,
 .cart-section form button:hover,
 .buy-button:hover {
-    background-color: #45a049; /* Darker green on hover */
-}
-
-/* Enhanced Review Section Styles */
-.add-review-section {
-    background-color: #f8fafc;
-    padding: 32px;
-    border-radius: 12px;
-    margin-top: 40px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.add-review-section h3 {
-    color: #1e293b;
-    font-size: 1.5rem;
-    margin-bottom: 24px;
-    text-align: center;
-}
-
-.review-form {
-    max-width: 600px;
-    margin: 0 auto;
+    background-color: #45a049;
 }
 
 /* Star Rating Styles */

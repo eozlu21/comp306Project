@@ -2,15 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <title>Product Details</title>
-  <!-- Link to the external CSS -->
   <link rel="stylesheet" href="/css/productDetails.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
-<!-- Main Container -->
 <div class="details-container">
-
   <!-- Product Name -->
   <h1 th:text="${product.productName}">Product Name</h1>
 
@@ -23,7 +19,6 @@
 
     <!-- Product Info -->
     <div class="product-info">
-
       <!-- Basic Info -->
       <div class="basic-info">
         <p th:text="'Brand: ' + ${product.brand}">Brand</p>
@@ -83,9 +78,13 @@
       <!-- Reviews Section -->
       <div class="reviews-section">
         <h3>
-          Reviews <span class="review-rating" th:text="'★ ' + ${averageRating} + '/5'"></span> (<span th:text="${ratedCount}">0</span>)
+          Reviews
+          <span class="review-rating" th:text="'★ ' + ${averageRating} + '/5'"></span>
+          (<span th:text="${ratedCount}">0</span>)
         </h3>
+        <!-- Scrollable reviews container -->
         <div class="reviews-grid">
+          <!-- Individual review cards -->
           <div class="review-card" th:each="review : ${reviews}">
             <div class="review-header">
               <strong th:text="${review.username}">Username</strong>
@@ -97,14 +96,11 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- Cart Section (Back + Add to Cart on Same Line) -->
+  <!-- Cart Section -->
   <div class="cart-section">
-    <a th:href="@{/homepage(userID=${userId})}" class="back-button">Back</a>
-
     <form th:action="@{/addToCart}" method="post">
       <input type="hidden" name="productId" th:value="${product.productId}" />
       <input type="hidden" name="userId" th:value="${userId}" />
@@ -117,8 +113,7 @@
   <!-- Add Review Section -->
   <div class="add-review-section">
     <h3>Write a Review</h3>
-
-    <!-- If user has purchased, show the review form -->
+    <!-- Review form for users who have purchased -->
     <div th:if="${hasPurchased}">
       <form th:action="@{/addReview}" method="post" class="review-form">
         <input type="hidden" name="productId" th:value="${product.productId}" />
@@ -128,16 +123,12 @@
         <div class="star-rating">
           <input type="radio" id="star5" name="rating" value="5" required />
           <label for="star5" title="5 stars"></label>
-
           <input type="radio" id="star4" name="rating" value="4" />
           <label for="star4" title="4 stars"></label>
-
           <input type="radio" id="star3" name="rating" value="3" />
           <label for="star3" title="3 stars"></label>
-
           <input type="radio" id="star2" name="rating" value="2" />
           <label for="star2" title="2 stars"></label>
-
           <input type="radio" id="star1" name="rating" value="1" />
           <label for="star1" title="1 star"></label>
         </div>
@@ -148,24 +139,20 @@
                 name="comment"
                 placeholder="Share your thoughts about this product..."
         ></textarea>
-
         <button type="submit">Submit Review</button>
       </form>
     </div>
 
-    <!-- If user has not purchased, show "Buy Now" -->
+    <!-- Message for users who haven't purchased -->
     <div th:if="${!hasPurchased}" class="non-purchaser-message">
       <p>You need to purchase this product before leaving a review.</p>
       <form th:action="@{/addToCart}" method="post">
         <input type="hidden" name="productId" th:value="${product.productId}" />
         <input type="hidden" name="userId" th:value="${userId}" />
         <input type="hidden" name="quantity" value="1" />
-        <button type="submit" class="buy-button">Buy Now</button>
       </form>
     </div>
   </div>
-
-</div> <!-- End of .details-container -->
-
+</div>
 </body>
 </html>

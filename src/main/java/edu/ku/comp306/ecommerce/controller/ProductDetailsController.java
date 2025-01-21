@@ -69,7 +69,7 @@ public class ProductDetailsController {
         List<UserReviewDTO> reviews = reviewedRepository.findReviewsForProduct(productId);
         model.addAttribute("reviews", reviews);
 
-        return "productDetails";
+        return "product-details";
     }
 
     @PostMapping("/addReview")
@@ -91,7 +91,8 @@ public class ProductDetailsController {
             @RequestParam("userId") Integer userId
     ) {
         cartService.addToCart(userId, productId, quantity);
-        return "redirect:/productDetails/" + productId + "?userID=" + userId;
+        // Return the new Thymeleaf template "cart-success" instead of a redirect
+        return "cart-success";
     }
 
     @GetMapping("/products/{category}")

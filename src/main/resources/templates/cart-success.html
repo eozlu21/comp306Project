@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Added to Cart</title>
+  <link rel="stylesheet" href="/css/cartSuccess.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="success-container">
+  <h1>Success!</h1>
+  <p>Your item has been added to the cart.</p>
+  <p>You will be returned to the previous page in 2 seconds...</p>
+</div>
+
+<script>
+  // After 1 second, go back to the previous page in the browser history
+  setTimeout(function() {
+    window.history.back();
+  }, 2000);
+</script>
+</body>
+</html>

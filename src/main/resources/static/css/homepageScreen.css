@@ -179,6 +179,49 @@ main h2 {
 .product-details {
     text-align: center;
 }
+.product-actions {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* space between Show Details and Add to Cart */
+}
+
+/* Style for "Show Details" link */
+.details-button {
+    display: inline-block;
+    background-color: #3b82f6;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.details-button:hover {
+    background-color: #2563eb;
+}
+
+/* Style the Add-to-Cart form similarly to the details link */
+.add-to-cart-form {
+    display: inline-block;
+}
+
+.add-to-cart-button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.add-to-cart-button:hover {
+    background-color: #45a049;
+}
+
 
 .product-details p {
     margin: 5px 0;

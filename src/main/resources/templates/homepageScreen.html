@@ -20,13 +20,13 @@
                 <button type="submit" class="search-button">🔍</button>
             </form>
         </div>
+
         <!-- Category Filter Buttons -->
         <div class="category-buttons">
             <a th:href="@{/products/phone(userID=${userId})}" class="category-btn">Phones</a>
             <a th:href="@{/products/laptop(userID=${userId})}" class="category-btn">Laptops</a>
             <a th:href="@{/products/camera(userID=${userId})}" class="category-btn">Cameras</a>
         </div>
-
     </header>
 
     <main>
@@ -34,6 +34,7 @@
         <div class="product-list">
             <!-- Iterate over the products list -->
             <div class="product" th:each="product : ${products}">
+
                 <!-- Product Image -->
                 <img th:src="${product.imageURL}" alt="Product Image" class="product-image">
 
@@ -47,7 +48,8 @@
                 <!-- Reviews Section -->
                 <div class="reviews-section">
                     <h3>
-                        Reviews <span class="review-rating" th:text="'★ ' + ${productRatings[product.productId]} + '/5'"></span>
+                        Reviews
+                        <span class="review-rating" th:text="'★ ' + ${productRatings[product.productId]} + '/5'">★ 4.5/5</span>
                         (<span th:text="${productReviews[product.productId]?.size()}">0</span>)
                     </h3>
                     <div class="reviews-grid">
@@ -56,22 +58,32 @@
                                 <span class="review-username" th:text="${review.username}">Username</span>
                                 <span class="membership-badge" th:text="${review.membershipType}">Membership</span>
                                 <span class="review-date" th:text="${review.reviewDate}">2025-01-20</span>
-                                <span class="review-rating" th:text="'★ ' + ${review.rating} + '/5'">5/5</span>
+                                <span class="review-rating" th:text="'★ ' + ${review.rating} + '/5'">★ 5/5</span>
                             </div>
                             <p class="review-comment" th:text="${review.comment}">Comment</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Show Details Button -->
-                <a class="details-button" th:href="@{/productDetails/{id}(id=${product.productId}, userID=${userId})}">
-                    Show Details
-                </a>
+                <!-- Actions: Show Details + Add to Cart -->
+                <div class="product-actions">
+                    <!-- Show Details Button -->
+                    <a class="details-button"
+                       th:href="@{/productDetails/{id}(id=${product.productId}, userID=${userId})}">
+                        Show Details
+                    </a>
+
+                    <!-- Add to Cart Form (always adds quantity 1) -->
+                    <form th:action="@{/addToCart}" method="post" class="add-to-cart-form">
+                        <input type="hidden" name="productId" th:value="${product.productId}" />
+                        <input type="hidden" name="userId" th:value="${userId}" />
+                        <input type="hidden" name="quantity" value="1" />
+                        <button type="submit" class="add-to-cart-button">Add to Cart</button>
+                    </form>
+                </div>
             </div>
         </div>
     </main>
 </div>
-
-
 </body>
 </html>
