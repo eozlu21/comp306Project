@@ -30,8 +30,8 @@ public class UserService {
         // Handle null case when there are no orders
         totalSpending = (totalSpending == null) ? 0 : totalSpending;
 
-        MembershipType membershipType = totalSpending > 10000 ? MembershipType.PREMIUM :
-                totalSpending > 5000 ? MembershipType.GOLD :
+        MembershipType membershipType = totalSpending > 100000 ? MembershipType.PREMIUM :
+                totalSpending > 50000 ? MembershipType.GOLD :
                         MembershipType.SILVER;
 
         User user = userRepository.findById(userId)

@@ -16,12 +16,20 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByUsernameAndPassword(String username, String password);
 
     @Query(value = """
-        SELECT SUM(oc.Quantity * p.Price)
-        FROM Orders o
-        JOIN OrderContains oc ON o.OrderID = oc.OrderID
-        JOIN Product p ON oc.ProductID = p.ProductID
-        WHERE o.UserID = :userId
-        AND o.OrderDate >= CURRENT_DATE - INTERVAL 30 DAY
+        SELECT
+            SUM(order_total) AS total_spending
+        FROM (
+            SELECT
+                o.OrderID,
+                SUM(oc.Quantity * p.Price) AS order_total
+            FROM Orders o
+            JOIN OrderContains oc ON o.OrderID = oc.OrderID
+            JOIN Product p ON oc.ProductID = p.ProductID
+            WHERE o.UserID = :userId
+            AND o.OrderDate >= CURRENT_DATE - INTERVAL 30 DAY
+            GROUP BY o.OrderID
+            HAVING SUM(oc.Quantity * p.Price) > 0
+        ) AS subquery
         """, nativeQuery = true)
     Double calculateTotalSpendingForLast30Days(@Param("userId") int userId);
 
