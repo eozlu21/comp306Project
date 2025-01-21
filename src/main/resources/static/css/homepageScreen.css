@@ -41,6 +41,7 @@ header h1 {
 .search-bar {
     display: flex;
     align-items: center;
+    justify-content: center; /* Center contents horizontally */
     gap: 10px;
     width: 100%;
     max-width: 600px;
@@ -48,6 +49,7 @@ header h1 {
     padding: 0.5rem 1rem;
     border-radius: 50px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin: 1rem auto; /* Center the search bar horizontally */
 }
 
 .search-box {

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Search Results</title>
+  <link rel="stylesheet" href="/css/homepageScreen.css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1 th:text="'Search Results for: ' + ${keyword}">Search Results</h1>
+    <div class="button-container">
+      <a th:href="@{/homepage(userID=${userId})}" class="back-to-homepage-btn">🏠 Back to Homepage</a>
+    </div>
+
+    <div class="category-buttons">
+      <a th:href="@{/products/phone(userID=${userId})}" class="category-btn">Phones</a>
+      <a th:href="@{/products/laptop(userID=${userId})}" class="category-btn">Laptops</a>
+      <a th:href="@{/products/camera(userID=${userId})}" class="category-btn">Cameras</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="search-bar">
+      <form th:action="@{/search}" method="get">
+        <input type="hidden" name="userId" th:value="${userId}">
+        <input type="text" name="keyword" class="search-box" placeholder="Search for other products">
+        <button type="submit" class="search-button">🔍</button>
+      </form>
+    </div>
+
+    <h2>Products Matching: <span th:text="${keyword}"></span></h2>
+    <div class="product-list">
+      <!-- Iterate over the products list -->
+      <div class="product" th:each="product : ${products}">
+        <!-- Product Image -->
+        <img th:src="${product.imageURL}" alt="Product Image" class="product-image">
+
+        <!-- Product Details -->
+        <div class="product-details">
+          <p class="product-name" th:text="${product.productName}">Product Name</p>
+          <p class="brand" th:text="'Brand: ' + ${product.brand}">Brand</p>
+          <p class="price" th:text="'Price: $' + ${product.price}">Price</p>
+        </div>
+
+        <!-- Reviews Section -->
+        <div class="reviews-section">
+          <h3>
+            Reviews <span class="review-rating" th:text="'★ ' + ${productRatings[product.productId]} + '/5'"></span>
+            (<span th:text="${productReviews[product.productId]?.size()}">0</span>)
+          </h3>
+          <ul>
+            <li th:each="review : ${productReviews[product.productId]}">
+              <strong th:text="${review.username}">User Name</strong>
+              <span th:text="'★ ' + ${review.rating}">Rating</span>
+              <p th:text="${review.comment}">Comment</p>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Show Details Button -->
+        <a class="details-button" th:href="@{/productDetails/{id}(id=${product.productId}, userID=${userId})}">
+          Show Details
+        </a>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

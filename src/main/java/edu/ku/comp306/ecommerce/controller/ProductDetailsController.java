@@ -132,4 +132,42 @@ public class ProductDetailsController {
 
         return "product-list";
     }
+
+    @GetMapping("/search")
+    public String searchProducts(
+            @RequestParam("keyword") String keyword,
+            @RequestParam("userId") Integer userId,
+            Model model) {
+
+        // Fetch products based on the search keyword
+        List<Product> products = productService.searchProducts(keyword);
+
+        // Fetch average ratings and reviews for the searched products
+        Map<Integer, Double> productRatings = products.stream()
+                .collect(Collectors.toMap(
+                        Product::getProductId,
+                        product -> {
+                            Double avgRating = reviewedRepository.getAverageRating(product.getProductId());
+                            return avgRating != null ? avgRating : 0.0;
+                        }
+                ));
+
+        Map<Integer, List<UserReviewDTO>> productReviews = products.stream()
+                .collect(Collectors.toMap(
+                        Product::getProductId,
+                        product -> reviewedRepository.findReviewsForProduct(product.getProductId())
+                                .stream()
+                                .limit(2) // Limit the list to 2 reviews
+                                .collect(Collectors.toList())
+                ));
+
+        // Add data to the model
+        model.addAttribute("products", products);
+        model.addAttribute("productRatings", productRatings);
+        model.addAttribute("productReviews", productReviews);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("userId", userId);
+
+        return "search-results";
+    }
 }

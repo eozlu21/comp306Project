@@ -24,6 +24,11 @@ public class ProductService {
     public List<Product> getProductsByCategory(String category) {
         return productRepository.findProductsByCategory(category);
     }
+
+    public List<Product> searchProducts(String keyword) {
+        return productRepository.searchByKeyword(keyword);
+    }
+
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }

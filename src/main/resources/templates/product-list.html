@@ -14,8 +14,11 @@
     </div>
 
     <div class="search-bar">
-      <input type="text" class="search-box" placeholder="Search for other products">
-      <button type="button" class="search-button">🔍</button>
+      <form th:action="@{/search}" method="get">
+        <input type="hidden" name="userId" th:value="${userId}">
+        <input type="text" name="keyword" class="search-box" placeholder="Search for other products">
+        <button type="submit" class="search-button">🔍</button>
+      </form>
     </div>
 
     <!-- Category Filter Links -->
