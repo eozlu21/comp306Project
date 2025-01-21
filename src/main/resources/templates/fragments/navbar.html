@@ -1,0 +1,38 @@
+<nav class="navbar" th:fragment="navbar">
+    <!-- Logo -->
+    <a th:href="@{/homepage(userID=${userId})}" class="navbar-logo">
+        <img src="/images/logo.png" alt="Logo" class="logo-image">
+    </a>
+
+    <!-- Search Bar -->
+    <div class="navbar-search">
+        <form th:action="@{/search}" method="get" class="search-form">
+            <!-- Hidden input for userId -->
+            <input type="hidden" name="userId" th:value="${userId}">
+            <!-- Search input -->
+            <input type="text" name="keyword" class="search-box" placeholder="Search for a product">
+            <!-- Search button -->
+            <button type="submit" class="search-button">🔍</button>
+        </form>
+    </div>
+
+
+
+    <div class="profile-section">
+        <a th:href="@{/profile(userID=${userId})}" class="profile-link">
+            <img src="/images/profile.png" alt="Profile" class="profile-icon">
+            <span class="profile-name" th:text="${userName}">Guest</span>
+        </a>
+    </div>
+
+
+    <div class="cart">
+        <a th:href="@{/cart(userID=${userId})}" class="navbar-link">
+            <img src="/images/cart.png" alt="Cart" class="icon-image">
+            <span class="profile-name" th:text="|My Cart|">My Cart</span>
+            <span class="cart-count" th:text="${cartItemCount}"></span>
+        </a>
+    </div>
+
+
+</nav>

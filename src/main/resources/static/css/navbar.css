@@ -1,0 +1,166 @@
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f2f2f2; /* Daha koyu bir mavi */
+    width:100%; /* Tüm genişliği kaplar */
+    padding: 1rem 2rem;
+    border-radius: 0; /* Köşeleri kaldırmak için */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Logo */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    height: 50px;
+    width: auto;
+    margin-right: 10px; /* Logonun yanındaki metin boşluğu */
+}
+
+
+
+
+.profile-section {
+    display: flex;
+    align-items: center; /* İkon ve metni dikeyde ortalar */
+    gap: 10px; /* İkon ve metin arasındaki boşluk */
+    gap: 1rem; /* İkon ve metin arası boşluk */
+    padding: 0.5rem 1rem; /* İç boşluk ekler */
+    border-left: 1px solid #ccc; /* Profil ve cart arasında ince bir çizgi */
+    margin-left: 1rem; /* Çizgi ile aradaki boşluk */
+    font-size: 1.3rem; /* Yazı boyutunu artır */
+}
+.profile-section:hover {
+    background-color: #e6e6e6; /* Hover durumunda biraz koyulaşır */
+    border-radius: 8px; /* Köşeleri yuvarlatır */
+}
+
+
+.profile-link {
+    display: flex;
+    align-items: center; /* İkon ve metni dikeyde hizalar */
+    text-decoration: none; /* Link alt çizgisini kaldırır */
+    color: #111111; /* Link metin rengini ayarlar */
+    gap: 5px; /* İkon ve isim arasındaki boşluk */
+}
+
+
+
+.profile-icon {
+    height: 40px; /* İkon boyutu */
+    width: 40px;
+    border-radius: 50%; /* İkonu yuvarlak yapar */
+    object-fit: cover; /* Görüntüyü düzgün yerleştirir */
+}
+
+.profile-name {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #111111;
+}
+
+
+
+.cart {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* İkon ve metin arası boşluk */
+    padding: 0.5rem 1rem; /* İç boşluk ekler */
+    border-left: 1px solid #ccc; /* Profil ve cart arasında ince bir çizgi */
+    margin-left: 1rem; /* Çizgi ile aradaki boşluk */
+    font-size: 1.3rem; /* Yazı boyutunu artır */
+}
+
+.cart:hover {
+    background-color: #e6e6e6; /* Hover durumunda biraz koyulaşır */
+    border-radius: 8px; /* Köşeleri yuvarlatır */
+}
+.cart-count {
+    background-color: red;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 0.3rem 0.6rem;
+    margin-left: 0.5rem;
+    display: inline-block;
+}
+
+
+.icon-image {
+    height: 40px; /* İkon boyutunu artır */
+    width: auto;
+    margin-right: 0.5rem;
+    color: #111111;
+}
+
+
+.navbar-link {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+    padding: 0.5rem 1rem; /* Kenarlardan boşluk */
+    background-color: #f9f9f9; /* Hafif gri arka plan */
+    border-radius: 30px; /* Yuvarlatılmış köşeler */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+}
+
+
+.search-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 800px; /* Maksimum genişlik */
+    gap: 10px; /* Arama kutusu ve buton arasındaki boşluk */
+}
+
+.search-box {
+    flex: 1; /* Esnek genişlik */
+    padding: 0.7rem 1rem;
+    border: none; /* Kenar çizgisini kaldır */
+    border-radius: 20px; /* Yuvarlatılmış köşeler */
+    background-color: #ffffff; /* Beyaz arka plan */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* İç gölge */
+    font-size: 1rem;
+    outline: none; /* Fokus çerçevesini kaldır */
+    max-width: 800px;
+}
+
+.search-box::placeholder {
+    color: #cccccc; /* Placeholder metin rengi */
+}
+
+.search-button {
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, #4c84c1, #4c84e9); /* Renk geçişi */
+    border: none;
+    border-radius: 20px; /* Butonu yuvarlat */
+    font-size: 1.2rem;
+    color: white; /* Buton metin rengi */
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+}
+
+.search-button:hover {
+    transform: translateY(-2px); /* Hover sırasında hafif yükselir */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Daha belirgin gölge */
+}
+

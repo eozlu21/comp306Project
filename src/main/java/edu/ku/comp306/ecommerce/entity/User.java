@@ -38,4 +38,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "MembershipType", nullable = false, columnDefinition = "varchar(255) default 'SILVER'")
     private MembershipType membershipType = MembershipType.SILVER; // Default value
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 }
