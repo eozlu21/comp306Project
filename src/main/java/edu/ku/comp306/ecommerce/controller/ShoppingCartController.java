@@ -72,6 +72,9 @@ public class ShoppingCartController {
 
     @PostMapping("cart/checkout")
     public String checkout(@RequestParam("userID") Integer userId) {
+        if (cartService.getCart(userId).getCartItems().isEmpty()) {
+            return "redirect:/cart?userID=" + userId;
+        }
         var orderID = orderService.createOrderId(userId, LocalDate.now());
         cartService.order(userId, orderID);
         return "redirect:/checkout?userID=" + userId + "&orderID=" + orderID;

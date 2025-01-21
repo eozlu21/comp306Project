@@ -42,7 +42,12 @@ public class CartService {
     }
 
     public void addToCart(Integer userId, Integer productId, Integer quantity) {
-        cartRepository.saveCart(userId, productId, quantity);
+        var newQuantity = quantity;
+        if (cartRepository.findByUserIdAndProductId(userId, productId).isPresent()){
+            newQuantity = cartRepository.findByUserIdAndProductId(userId, productId).get().getQuantity() + quantity;
+            cartRepository.editQuantity(userId, productId, newQuantity);
+        } else
+            cartRepository.saveCart(userId, productId, quantity);
     }
 
 
