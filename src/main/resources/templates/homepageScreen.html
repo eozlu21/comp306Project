@@ -13,7 +13,11 @@
         <div class="suggestions-list">
             <!-- Iterate over the suggested products -->
             <div class="suggested-product" th:each="product : ${suggestedProducts}">
-                <img th:src="${product['imageURL']}" alt="Product Image" class="product-image">
+                <a th:href="@{'/productDetails/' + ${product['productId']} + '?userID=' + ${userId}}">
+                    <img th:src="${product['imageURL']}" alt="Product Image" class="product-image">
+                </a>
+
+
                 <div class="suggested-product-details">
                     <p class="suggested-product-id" th:text=" ${product['productName']}"></p>
                     <p class="suggested-total-purchased" th:text="'Total Purchased: ' + ${product['totalPurchased']}"></p>
