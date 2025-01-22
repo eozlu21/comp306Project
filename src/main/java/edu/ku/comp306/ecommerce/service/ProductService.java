@@ -1,24 +1,36 @@
 package edu.ku.comp306.ecommerce.service;
 
+import edu.ku.comp306.ecommerce.dto.UserReviewDTO;
 import edu.ku.comp306.ecommerce.entity.Product;
+
 import edu.ku.comp306.ecommerce.repository.CameraRepository;
 import edu.ku.comp306.ecommerce.repository.LaptopRepository;
 import edu.ku.comp306.ecommerce.repository.PhoneRepository;
+
+import edu.ku.comp306.ecommerce.enums.MembershipType;
+
 import edu.ku.comp306.ecommerce.repository.ProductRepository;
+import edu.ku.comp306.ecommerce.repository.ReviewedRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ProductService {
 
     private final ProductRepository productRepository;
+
     private final PhoneRepository phoneRepository;
     private final CameraRepository cameraRepository;
     private final LaptopRepository laptopRepository;
+
+    private final ReviewedRepository reviewedRepository;
 
     public List<Product> getPopularProducts() {
         return productRepository.findPopularProducts();
@@ -113,5 +125,46 @@ public class ProductService {
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+    public List<Map<String, Object>> getTopProductsForMembership(MembershipType membershipType) {
+        // Fetch data from the repository
+        List<Object[]> results = productRepository.findTopProductsByMembership(membershipType);
+
+        // Map results into a key-value structure
+        return results.stream().map(row -> {
+            Map<String, Object> productData = new HashMap<>();
+            productData.put("productId", row[0]);
+            productData.put("productName", row[1]); // Product ID
+            productData.put("brand", row[2]);    // Brand
+            productData.put("totalPurchased", row[4]); // Total Purchased Quantity
+            productData.put("imageURL", row[3]);
+            return productData;
+        }).collect(Collectors.toList());
+    }
+
+    public Map<Integer, Double> fetchProductRatings(List<Product> products) {
+        // Fetch average ratings for each product
+        Map<Integer, Double> productRatings = products.stream()
+                .collect(Collectors.toMap(
+                        Product::getProductId,
+                        product -> {
+                            Double avgRating = reviewedRepository.getAverageRating(product.getProductId());
+                            return avgRating != null ? avgRating : 0.0;
+                        }
+                ));
+        return productRatings;
+    }
+
+    public Map<Integer, List<UserReviewDTO>> fetchProductReviews(List<Product> products) {
+        // Fetch reviews for each product
+        Map<Integer, List<UserReviewDTO>> productReviews = products.stream()
+                .collect(Collectors.toMap(
+                        Product::getProductId,
+                        product -> reviewedRepository.findReviewsForProduct(product.getProductId())
+                                .stream()
+                                .limit(2) // Limit the list to 2 reviews
+                                .collect(Collectors.toList())
+                ));
+        return productReviews;
     }
 }

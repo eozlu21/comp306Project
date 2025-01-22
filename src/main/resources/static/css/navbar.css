@@ -1,62 +1,64 @@
-/* Navbar */
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #f2f2f2; /* Daha koyu bir mavi */
-    width:100%; /* Tüm genişliği kaplar */
+    background-color: #f2f2f2;
+    width: 1120px;
     padding: 1rem 2rem;
-    border-radius: 0; /* Köşeleri kaldırmak için */
+    border-radius: 4px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-
-/* Logo */
 .navbar-logo {
     display: flex;
     align-items: center;
+    justify-content: center;
+    background-color: #f2f2f2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.navbar-logo:hover {
+    background-color: #e6e6e6;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
 }
 
 .logo-image {
-    height: 50px;
+    height: 60px;
     width: auto;
-    margin-right: 10px; /* Logonun yanındaki metin boşluğu */
+    border-radius: 15%;
 }
-
-
-
 
 .profile-section {
     display: flex;
-    align-items: center; /* İkon ve metni dikeyde ortalar */
-    gap: 10px; /* İkon ve metin arasındaki boşluk */
-    gap: 1rem; /* İkon ve metin arası boşluk */
-    padding: 0.5rem 1rem; /* İç boşluk ekler */
-    border-left: 1px solid #ccc; /* Profil ve cart arasında ince bir çizgi */
-    margin-left: 1rem; /* Çizgi ile aradaki boşluk */
-    font-size: 1.3rem; /* Yazı boyutunu artır */
-}
-.profile-section:hover {
-    background-color: #e6e6e6; /* Hover durumunda biraz koyulaşır */
-    border-radius: 8px; /* Köşeleri yuvarlatır */
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 0.5rem;
+    border-left: 1px solid #ccc;
+    margin-left: 1rem;
+    font-size: 1.3rem;
 }
 
+.profile-section:hover {
+    background-color: #e6e6e6;
+    border-radius: 8px;
+}
 
 .profile-link {
     display: flex;
-    align-items: center; /* İkon ve metni dikeyde hizalar */
-    text-decoration: none; /* Link alt çizgisini kaldırır */
-    color: #111111; /* Link metin rengini ayarlar */
-    gap: 5px; /* İkon ve isim arasındaki boşluk */
+    align-items: center;
+    text-decoration: none;
+    color: #111111;
+    gap: 5px;
 }
 
-
-
 .profile-icon {
-    height: 40px; /* İkon boyutu */
+    height: 40px;
     width: 40px;
-    border-radius: 50%; /* İkonu yuvarlak yapar */
-    object-fit: cover; /* Görüntüyü düzgün yerleştirir */
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .profile-name {
@@ -65,41 +67,41 @@
     color: #111111;
 }
 
-
-
 .cart {
-    display: flex;
-    align-items: center;
-    gap: 1rem; /* İkon ve metin arası boşluk */
-    padding: 0.5rem 1rem; /* İç boşluk ekler */
-    border-left: 1px solid #ccc; /* Profil ve cart arasında ince bir çizgi */
-    margin-left: 1rem; /* Çizgi ile aradaki boşluk */
-    font-size: 1.3rem; /* Yazı boyutunu artır */
+    position: relative;
+    display: inline-block;
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
 }
 
 .cart:hover {
-    background-color: #e6e6e6; /* Hover durumunda biraz koyulaşır */
-    border-radius: 8px; /* Köşeleri yuvarlatır */
-}
-.cart-count {
-    background-color: red;
-    color: white;
-    font-size: 0.8rem;
-    font-weight: bold;
-    border-radius: 50%;
-    padding: 0.3rem 0.6rem;
-    margin-left: 0.5rem;
-    display: inline-block;
+    background-color: #e6e6e6;
+    border-radius: 8px;
 }
 
+.cart-count {
+    position: absolute;
+    top: 3px;
+    right: 45px;
+    background-color: #4c84e9;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: normal;
+    border-radius: 50%;
+    padding: 0.3rem 0.3rem;
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    text-align: center;
+}
 
 .icon-image {
-    height: 40px; /* İkon boyutunu artır */
+    height: 40px;
     width: auto;
-    margin-right: 0.5rem;
-    color: #111111;
+    padding-right: 10px;
 }
-
 
 .navbar-link {
     text-decoration: none;
@@ -114,72 +116,74 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
-    padding: 0.5rem 1rem; /* Kenarlardan boşluk */
-    background-color: #f9f9f9; /* Hafif gri arka plan */
-    border-radius: 30px; /* Yuvarlatılmış köşeler */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+    padding: 0.5rem 1rem;
+    background-color: #f9f9f9;
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 65px;
+    margin-right: 35px;
 }
-
 
 .search-form {
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 800px; /* Maksimum genişlik */
-    gap: 10px; /* Arama kutusu ve buton arasındaki boşluk */
+    max-width: 1500px;
+    gap: 10px;
 }
 
 .search-box {
-    flex: 1; /* Esnek genişlik */
+    flex: 1;
     padding: 0.7rem 1rem;
-    border: none; /* Kenar çizgisini kaldır */
-    border-radius: 20px; /* Yuvarlatılmış köşeler */
-    background-color: #ffffff; /* Beyaz arka plan */
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* İç gölge */
+    border: none;
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
     font-size: 1rem;
-    outline: none; /* Fokus çerçevesini kaldır */
-    max-width: 800px;
+    outline: none;
+    max-width: 1000px;
 }
 
 .search-box::placeholder {
-    color: #cccccc; /* Placeholder metin rengi */
+    color: #cccccc;
 }
 
 .search-button {
     padding: 0.6rem 1.2rem;
-    background: linear-gradient(135deg, #4c84c1, #4c84e9); /* Renk geçişi */
+    background: linear-gradient(135deg, #4c84c1, #4c84e9);
     border: none;
-    border-radius: 20px; /* Butonu yuvarlat */
+    border-radius: 20px;
     font-size: 1.2rem;
-    color: white; /* Buton metin rengi */
+    color: white;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .search-button:hover {
-    transform: translateY(-2px); /* Hover sırasında hafif yükselir */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Daha belirgin gölge */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
+
 .logout-section {
-    margin-left: auto; /* Push to the far right */
+    margin-left: auto;
     display: flex;
     align-items: center;
 }
 
 .logout-btn {
-    background-color: #ff4d4d; /* Red color for logout */
+    background-color: #ff4d4d;
     color: white;
     border: none;
     padding: 8px 16px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+    margin-left: 14px;
 }
 
 .logout-btn:hover {
-    background-color: #e63939; /* Darker red on hover */
+    background-color: #e63939;
 }
-

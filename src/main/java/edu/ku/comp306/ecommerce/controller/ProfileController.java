@@ -4,6 +4,7 @@ import edu.ku.comp306.ecommerce.dto.UserReviewDTO;
 import edu.ku.comp306.ecommerce.entity.User;
 import edu.ku.comp306.ecommerce.repository.ReviewedRepository;
 import edu.ku.comp306.ecommerce.service.ProfileService;
+import edu.ku.comp306.ecommerce.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,13 +20,16 @@ public class ProfileController {
 
     private final ProfileService profileService;
     private final ReviewedRepository reviewedRepository;
+    private final UserService userService;
 
     @GetMapping("/profile")
     public String getProfile(@RequestParam("userID") Integer userId, Model model) {
         User user = profileService.getUserById(userId);
         model.addAttribute("user", user);
         model.addAttribute("orders", profileService.getUserOrdersWithProducts(userId));
-
+        model.addAttribute("isTechManiac", userService.userPurchasedAllCategories(userId));
+        model.addAttribute("isReviewAddict", userService.userReviewedAllProductsTheyOrdered(userId));
+        model.addAttribute("isSilentUser", userService.userDidNotReviewAnyProductTheyOrdered(userId));
         List<UserReviewDTO> reviews = reviewedRepository.findReviewsByUser(userId);
         model.addAttribute("reviews", reviews);
         return "profile";

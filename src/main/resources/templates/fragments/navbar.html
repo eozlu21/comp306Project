@@ -4,6 +4,7 @@
         <img src="/images/logo.png" alt="Logo" class="logo-image">
     </a>
 
+
     <!-- Search Bar -->
     <div class="navbar-search">
         <form th:action="@{/search}" method="get" class="search-form">
@@ -29,10 +30,12 @@
     <div class="cart">
         <a th:href="@{/cart(userID=${userId})}" class="navbar-link">
             <img src="/images/cart.png" alt="Cart" class="icon-image">
-            <span class="profile-name" th:text="|My Cart|">My Cart</span>
+            <span class="profile-name" th:text=" |My Cart| ">My Cart</span>
             <span class="cart-count" th:text="${cartItemCount}"></span>
         </a>
     </div>
+
+
     <div class="logout-section">
         <a th:href="@{/loginSignup}" class="logout-button">
             <button class="logout-btn">Log Out</button>

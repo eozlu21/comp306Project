@@ -11,8 +11,21 @@
     <div class="details">
       <h2 class="profile-name">
         <span th:text="${user.firstName + ' ' + user.lastName}">Name</span>
+        <!-- Existing Membership Badge -->
         <span class="membership-badge" th:text="${user.membershipType}">Membership</span>
+
+        <!-- New Badges -->
+        <span class="membership-badge" th:if="${isTechManiac}">
+    Tech Maniac
+  </span>
+        <span class="membership-badge" th:if="${isReviewAddict}">
+    Review Addict
+  </span>
+        <span class="membership-badge" th:if="${isSilentUser}">
+    Silent User
+  </span>
       </h2>
+
       <p th:text="'Phone Number: ' + ${user.phoneNumber}">Phone Number</p>
       <p th:text="'Address: ' + ${user.address}">Address</p>
       <p th:text="'Email: ' + ${user.email}">Email</p>
@@ -36,6 +49,12 @@
             <span class="review-rating" th:text="'★ ' + ${review.rating} + '/5'"></span>
           </div>
           <span th:text="${review.comment}">Comment</span>
+          <div class="review-actions">
+            <a class="go-to-product-button"
+               th:href="@{/productDetails/{id}(id=${review.productId}, userID=${user.userId})}">
+              Go to Product
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -47,7 +66,7 @@
         <div class="order-card">
           <!-- Display Order Metadata -->
           <p th:text="'Order ID: ' + ${order.orderId}">Order ID</p>
-            <p th:text="'Order Date: ' + ${order.orderDate}">Order Date</p>
+          <p th:text="'Order Date: ' + ${order.orderDate}">Order Date</p>
           <p th:text="'Total Items: ' + ${order.numberOfItems}">Total Items</p>
           <p th:text="'Total Price: ₺' + ${order.totalPrice}">Total Price</p>
 

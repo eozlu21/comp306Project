@@ -4,11 +4,38 @@
     <title>Home Screen</title>
     <link rel="stylesheet" href="/css/homepageScreen.css">
     <link rel="stylesheet" href="/css/navbar.css">
+    <script>
+        // Check if this page should reload
+        if (sessionStorage.getItem("shouldReload") === "true") {
+            // Remove the flag and reload the page
+            sessionStorage.removeItem("shouldReload");
+            window.location.reload();
+        }
+    </script>
 </head>
 <body>
 <div class="container">
     <header>
         <div th:insert="fragments/navbar :: navbar"></div>
+        <h2>Suggestions for You</h2>
+        <div class="suggestions-list">
+            <!-- Iterate over the suggested products -->
+            <div class="suggested-product" th:each="product : ${suggestedProducts}">
+                <!-- Entire container wrapped in <a> to make it clickable -->
+                <a th:href="@{'/productDetails/' + ${product['productId']} + '?userID=' + ${userId}}" class="suggested-product-link">
+                    <div class="suggested-product-content">
+                        <!-- Product Image -->
+                        <img th:src="${product['imageURL']}" alt="Product Image" class="product-image">
+
+                        <!-- Product Details -->
+                        <div class="suggested-product-details">
+                            <p class="suggested-product-id" th:text="${product['productName']}"></p>
+                            <p class="suggested-total-purchased" th:text="'Total Purchased: ' + ${product['totalPurchased']}"></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
 
         <div class="category-buttons">
             <a th:href="@{/products/phone(userID=${userId})}" class="category-btn">Phones</a>

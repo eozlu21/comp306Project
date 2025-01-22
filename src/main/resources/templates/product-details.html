@@ -4,7 +4,14 @@
   <title>Product Details</title>
   <link rel="stylesheet" href="/css/productDetails.css"/>
   <link rel="stylesheet" href="/css/navbar.css">
-
+  <script>
+    // Check if this page should reload
+    if (sessionStorage.getItem("shouldReload") === "true") {
+      // Remove the flag and reload the page
+      sessionStorage.removeItem("shouldReload");
+      window.location.reload();
+    }
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -28,7 +35,7 @@
       <!-- Basic Info -->
       <div class="basic-info">
         <p th:text="'Brand: ' + ${product.brand}">Brand</p>
-        <p th:text="'Price: ₺' + ${product.price} + '0 TL'">Price</p>
+        <p th:text="'Price: ₺' + ${product.price}">Price</p>
         <p th:text="'Color: ' + ${product.color}">Color</p>
         <p th:text="'Dimension: ' + ${product.dimension}">Dimension</p>
         <p th:text="'Weight: ' + ${product.weight} + ' lbs'">Weight</p>
