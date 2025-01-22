@@ -1,6 +1,7 @@
 package edu.ku.comp306.ecommerce.service;
 
 import edu.ku.comp306.ecommerce.entity.User;
+import edu.ku.comp306.ecommerce.enums.MembershipType;
 import edu.ku.comp306.ecommerce.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,11 @@ public class UserService {
         return userRepository.findById(userId)
                 .map(User::getFullName)
                 .orElse("Guest");
+    }
+
+    public MembershipType getMembershipTypeById(Integer userId) {
+        return userRepository.findById(userId)
+                .map(User::getMembershipType) // This assumes your `User` entity has a `MembershipType` field
+                .orElseThrow(() -> new IllegalArgumentException("User not found with ID: " + userId));
     }
 }
