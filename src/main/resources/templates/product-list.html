@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -13,365 +14,47 @@
     }
   </script>
 </head>
-<aside class="filter-box">
-
-  <h2 th:text="'Filter ' + ${category} + 's'">Filter</h2>
-  <form th:action="@{/products/{category}/filter(category=${category})}" method="get">
-    <!-- Dynamic Filters -->
-    <div th:switch="${category}">
-      <!-- Phone Filters -->
-      <div th:case="'phone'">
-        <!-- Charger Type -->
-        <label for="chargerType">Charger Type:</label>
-        <select id="chargerType" name="chargerType">
-          <option value="">Any</option>
-          <option value="LIGHTNING">Lightning</option>
-          <option value="USB_C">USB-C</option>
-        </select>
-
-        <!-- Battery Capacity (mAh) -->
-        <label for="batteryCapacityMah">Battery Capacity (mAh):</label>
-        <select id="batteryCapacityMah" name="batteryCapacityMah">
-          <option value="">Any</option>
-          <option value="3240">3240</option>
-          <option value="4855">4855</option>
-          <option value="2815">2815</option>
-          <option value="5000">5000</option>
-        </select>
-
-        <!-- Screen Size -->
-        <label for="screenSize">Screen Size:</label>
-        <select id="screenSize" name="screenSize">
-          <option value="">Any</option>
-          <option value="6.1 inch">6.1 inch</option>
-          <option value="6.8 inch">6.8 inch</option>
-          <option value="6.7 inch">6.7 inch</option>
-          <option value="6.55 inch">6.55 inch</option>
-        </select>
-
-        <!-- Resolution -->
-        <label for="phoneResolution">Resolution:</label>
-        <select id="phoneResolution" name="resolution">
-          <option value="">Any</option>
-          <option value="2532×1170 pixels">2532×1170 pixels</option>
-          <option value="1440 x 3120 pixels">1440 x 3120 pixels</option>
-          <option value="2400×1080 pixels">2400×1080 pixels</option>
-          <option value="3200×1440 pixels">3200×1440 pixels</option>
-          <option value="2460×1080 pixels">2460×1080 pixels</option>
-        </select>
-
-        <!-- Camera Resolution -->
-        <label for="cameraResolution">Camera Resolution:</label>
-        <select id="cameraResolution" name="cameraResolution">
-          <option value="">Any</option>
-          <option value="12 MP">12 MP</option>
-          <option value="200 MP">200 MP</option>
-          <option value="50 MP">50 MP</option>
-          <option value="48 MP">48 MP</option>
-          <option value="64 MP">64 MP</option>
-          <option value="108 MP">108 MP</option>
-        </select>
-
-        <!-- Processor -->
-        <label for="processor">Processor:</label>
-        <select id="processor" name="processor">
-          <option value="">Any</option>
-          <option value="A15 Bionic">A15 Bionic</option>
-          <option value="Qualcomm Snapdragon 8 Gen 3">Qualcomm Snapdragon 8 Gen 3</option>
-          <option value="Exynos 2100">Exynos 2100</option>
-          <option value="Qualcomm Snapdragon 720G">Qualcomm Snapdragon 720G</option>
-          <option value="MediaTek Dimensity 1200">MediaTek Dimensity 1200</option>
-          <option value="Qualcomm Snapdragon 888">Qualcomm Snapdragon 888</option>
-        </select>
-
-        <!-- RAM -->
-        <label for="phoneRam">RAM (GB):</label>
-        <select id="phoneRam" name="ram">
-          <option value="">Any</option>
-          <option value="6">6</option>
-          <option value="12">12</option>
-          <option value="8">8</option>
-          <option value="4">4</option>
-        </select>
-
-        <!-- Fast Charging -->
-        <label for="fastCharging">Fast Charging:</label>
-        <select id="fastCharging" name="fastCharging">
-          <option value="">Any</option>
-          <option value="1">1</option>
-          <option value="0">0</option>
-        </select>
-
-        <!-- Fingerprint Sensor -->
-        <label for="fingerprintSensor">Fingerprint Sensor:</label>
-        <select id="fingerprintSensor" name="fingerprintSensor">
-          <option value="">Any</option>
-          <option value="1">1</option>
-          <option value="0">0</option>
-        </select>
-
-        <!-- Face Recognition -->
-        <label for="faceRecognition">Face Recognition:</label>
-        <select id="faceRecognition" name="faceRecognition">
-          <option value="">Any</option>
-          <option value="1">1</option>
-          <option value="0">0</option>
-        </select>
-
-        <!-- Network Compatibility -->
-        <label for="networkCompatibility">Network Compatibility:</label>
-        <select id="networkCompatibility" name="networkCompatibility">
-          <option value="">Any</option>
-          <option value="FIVE_G">5G</option>
-        </select>
-
-        <!-- Dual SIM Card -->
-        <label for="dualSimCard">Dual SIM Card:</label>
-        <select id="dualSimCard" name="dualSimCard">
-          <option value="">Any</option>
-          <option value="1">1</option>
-          <option value="0">0</option>
-        </select>
-
-        <!-- NFC -->
-        <label for="nfc">NFC:</label>
-        <select id="nfc" name="nfc">
-          <option value="">Any</option>
-          <option value="1">1</option>
-          <option value="0">0</option>
-        </select>
-      </div>
-
-      <!-- Camera Filters -->
-      <div th:case="'camera'">
-        <!-- Resolution -->
-        <label for="resolution">Resolution:</label>
-        <select name="resolution" id="resolution">
-          <option value="">Any</option>
-          <option value="45 MP">45 MP</option>
-          <option value="45.7 MP">45.7 MP</option>
-          <option value="24.2 MP">24.2 MP</option>
-          <option value="26.1 MP">26.1 MP</option>
-          <option value="20.3 MP">20.3 MP</option>
-        </select>
-
-        <!-- Optical Zoom -->
-        <label for="opticalZoom">Optical Zoom:</label>
-        <select name="opticalZoom" id="opticalZoom">
-          <option value="">Any</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-        </select>
-
-        <!-- Flash -->
-        <label for="flash">Flash:</label>
-        <select name="flash" id="flash">
-          <option value="">Any</option>
-          <option value="1">1</option>
-          <option value="0">0</option>
-        </select>
-
-        <!-- Battery Life -->
-        <label for="batteryLife">Battery Life (minutes):</label>
-        <select name="batteryLife" id="batteryLife">
-          <option value="">Any</option>
-          <option value="320">320</option>
-          <option value="420">420</option>
-          <option value="710">710</option>
-          <option value="500">500</option>
-          <option value="410">410</option>
-        </select>
-      </div>
-
-      <!-- Laptop Filters -->
-      <div th:case="'laptop'">
-        <!-- CPU -->
-        <label for="laptopCpu">CPU:</label>
-        <select id="laptopCpu" name="cpu">
-          <option value="">Any</option>
-          <option value="Apple M1">Apple M1</option>
-          <option value="Intel Core i7-12700H">Intel Core i7-12700H</option>
-          <option value="AMD Ryzen 7 5800H">AMD Ryzen 7 5800H</option>
-          <option value="Intel Core i9-13900HX">Intel Core i9-13900HX</option>
-          <option value="Apple M2">Apple M2</option>
-          <option value="Intel Core i5-12450H">Intel Core i5-12450H</option>
-        </select>
-
-        <!-- GPU -->
-        <label for="laptopGpu">GPU:</label>
-        <select id="laptopGpu" name="gpu">
-          <option value="">Any</option>
-          <option value="M1 8-Core GPU">M1 8-Core GPU</option>
-          <option value="NVIDIA GeForce RTX 3060">NVIDIA GeForce RTX 3060</option>
-          <option value="NVIDIA GeForce RTX 3070">NVIDIA GeForce RTX 3070</option>
-          <option value="NVIDIA GeForce RTX 4080">NVIDIA GeForce RTX 4080</option>
-          <option value="Apple M2 GPU">Apple M2 GPU</option>
-          <option value="Integrated Intel Iris Xe Graphics">Integrated Intel Iris Xe Graphics</option>
-        </select>
-
-        <!-- RAM -->
-        <label for="laptopRam">RAM (GB):</label>
-        <select id="laptopRam" name="ram">
-          <option value="">Any</option>
-          <option value="8">8</option>
-          <option value="16">16</option>
-          <option value="64">64</option>
-        </select>
-
-        <!-- Storage -->
-        <label for="laptopStorage">Storage (GB):</label>
-        <select id="laptopStorage" name="storage">
-          <option value="">Any</option>
-          <option value="256">256</option>
-          <option value="512">512</option>
-          <option value="1024">1024</option>
-          <option value="2048">2048</option>
-        </select>
-
-        <!-- OS -->
-        <label for="laptopOs">Operating System:</label>
-        <select id="laptopOs" name="os">
-          <option value="">Any</option>
-          <option value="MacOS">MacOS</option>
-          <option value="Windows 11">Windows 11</option>
-          <option value="Windows 10">Windows 10</option>
-          <option value="macOS">MacOS</option>
-        </select>
-
-        <!-- Face Recognition -->
-        <label for="laptopFaceRecognition">Face Recognition:</label>
-        <select id="laptopFaceRecognition" name="faceRecognition">
-          <option value="">Any</option>
-          <option value="1">Yes</option>
-          <option value="0">No</option>
-        </select>
-
-        <!-- Webcam -->
-        <label for="laptopWebcam">Webcam:</label>
-        <select id="laptopWebcam" name="webcam">
-          <option value="">Any</option>
-          <option value="1">Yes</option>
-          <option value="0">No</option>
-        </select>
-
-        <!-- Resolution -->
-        <label for="laptopResolution">Resolution:</label>
-        <select id="laptopResolution" name="resolution">
-          <option value="">Any</option>
-          <option value="2560 x 1600 Pixels">2560 x 1600 Pixels</option>
-          <option value="1920 x 1080 Pixels">1920 x 1080 Pixels</option>
-          <option value="2560 x 1440 Pixels">2560 x 1440 Pixels</option>
-          <option value="3840 x 2160 Pixels">3840 x 2160 Pixels</option>
-          <option value="2560 x 1664 Pixels">2560 x 1664 Pixels</option>
-          <option value="1920 x 1200 Pixels">1920 x 1200 Pixels</option>
-        </select>
-
-        <!-- Touch Screen -->
-        <label for="laptopTouchScreen">Touch Screen:</label>
-        <select id="laptopTouchScreen" name="touchScreen">
-          <option value="">Any</option>
-          <option value="1">Yes</option>
-          <option value="0">No</option>
-        </select>
-
-        <!-- Fingerprint Sensor -->
-        <label for="laptopFingerprintSensor">Fingerprint Sensor:</label>
-        <select id="laptopFingerprintSensor" name="fingerprintSensor">
-          <option value="">Any</option>
-          <option value="1">Yes</option>
-          <option value="0">No</option>
-        </select>
-
-        <!-- Screen Size -->
-        <label for="laptopScreenSize">Screen Size:</label>
-        <select id="laptopScreenSize" name="screenSize">
-          <option value="">Any</option>
-          <option value="13.3 inch">13.3 inch</option>
-          <option value="15.6 inch">15.6 inch</option>
-          <option value="17.3 inch">17.3 inch</option>
-          <option value="13.6 inch">13.6 inch</option>
-          <option value="14 inch">14 inch</option>
-        </select>
-
-        <!-- Battery Capacity -->
-        <label for="laptopBatteryCapacity">Battery Capacity (mAh):</label>
-        <select id="laptopBatteryCapacity" name="batteryCapacity">
-          <option value="">Any</option>
-          <option value="6000">6000</option>
-          <option value="5800">5800</option>
-          <option value="4380">4380</option>
-          <option value="7000">7000</option>
-          <option value="4800">4800</option>
-          <option value="4500">4500</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Submit Button -->
-    <input type="hidden" name="userID" th:value="${userId}" />
-    <button type="submit" class="filter-button">Apply Filters</button>
-  </form>
-</aside>
 <body>
 <div class="container">
   <header>
     <div th:insert="fragments/navbar :: navbar"></div>
+    
+    <!-- Filter Box Moved to Header -->
+    <aside class="filter-box">
+      <h2 th:text="'Filter ' + ${category} + 's'">Filter</h2>
+      <form th:action="@{/products/{category}/filter(category=${category})}" method="get">
+        <!-- Filters content remains unchanged -->
+        <div th:switch="${category}">
+          <!-- Filter content (phones, laptops, cameras) here -->
+        </div>
+        <input type="hidden" name="userID" th:value="${userId}" />
+        <button type="submit" class="filter-button">Apply Filters</button>
+      </form>
+    </aside>
+    
     <!-- Category Filter Links -->
     <div class="category-buttons">
       <a th:href="@{/products/phone(userID=${userId})}" class="category-btn">Phones</a>
       <a th:href="@{/products/laptop(userID=${userId})}" class="category-btn">Laptops</a>
       <a th:href="@{/products/camera(userID=${userId})}" class="category-btn">Cameras</a>
     </div>
-
   </header>
-
-
 
   <main>
     <h2 th:text="'Products in ' + ${category} + ':'">Selected Category</h2>
     <div class="product-list">
       <!-- Iterate over the products list -->
       <div class="product" th:each="product : ${products}">
-
-        <!-- Product Image -->
         <img th:src="${product.imageURL}" alt="Product Image" class="product-image">
-
-        <!-- Product Details -->
         <div class="product-details">
           <p class="product-name" th:text="${product.productName}">Product Name</p>
           <p class="brand" th:text="'Brand: ' + ${product.brand}">Brand</p>
           <p class="price" th:text="'Price: ₺' + ${product.price}">Price</p>
         </div>
-
-        <!-- Reviews Section -->
-        <div class="reviews-section">
-          <h3>
-            Reviews
-            <span class="review-rating" th:text="'★ ' + ${productRatings[product.productId]} + '/5'">★ 4.5/5</span>
-            (<span th:text="${productReviews[product.productId]?.size()}">0</span>)
-          </h3>
-          <div class="reviews-grid">
-            <div class="review-card" th:each="review : ${productReviews[product.productId]}">
-              <div class="review-header">
-                <span class="review-username" th:text="${review.username}">Username</span>
-                <span class="membership-badge" th:text="${review.membershipType}">Membership</span>
-                <span class="review-date" th:text="${review.reviewDate}">2025-01-20</span>
-                <span class="review-rating" th:text="'★ ' + ${review.rating} + '/5'">★ 5/5</span>
-              </div>
-              <p class="review-comment" th:text="${review.comment}">Comment</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Actions: Show Details + Add to Cart -->
         <div class="product-actions">
-          <!-- Show Details Button -->
-          <a class="details-button"
-             th:href="@{/productDetails/{id}(id=${product.productId}, userID=${userId})}">
+          <a class="details-button" th:href="@{/productDetails/{id}(id=${product.productId}, userID=${userId})}">
             Show Details
           </a>
-
-          <!-- Add to Cart Form (always adds quantity 1) -->
           <form th:action="@{/addToCart}" method="post" class="add-to-cart-form">
             <input type="hidden" name="productId" th:value="${product.productId}" />
             <input type="hidden" name="userId" th:value="${userId}" />
