@@ -352,4 +352,79 @@ main h2 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.suggestions {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.suggestions-list {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.suggested-product {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 200px;
+    text-align: center;
+}
+
+.suggested-product-details {
+    font-size: 0.9rem;
+}
+
+.suggested-brand,
+.suggested-total-purchased {
+    color: #555;
+}
+.suggested-product-link {
+    display: block;  /* Makes the entire link container clickable */
+    text-decoration: none;  /* Removes the default underline from the link */
+    color: inherit;  /* Ensures the text color matches the surrounding content */
+    transition: transform 0.3s ease; /* Adds a smooth transition effect when hovering */
+}
+
+.suggested-product-link:hover {
+    transform: translateY(-5px);  /* Shifts the container 5px upwards */
+}
+
+.suggested-product-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;  /* Ensures that the text is centered */
+}
+
+.product-image {
+    width: 100%; /* Ensures the image takes up the full width */
+    height: auto;  /* Maintains the aspect ratio */
+    border-bottom: 2px solid #ddd;  /* Optional: Adds a border below the image for separation */
+    margin-bottom: 10px;  /* Optional: Adds space between image and text */
+}
+
+.suggested-product-id, .suggested-total-purchased {
+    font-size: 1rem;  /* Adjust the font size for text */
+    color: #333;  /* Sets a dark color for the text */
+    margin: 5px 0;  /* Adds margin between the text lines */
+}
+
+.suggested-product-id {
+    font-weight: bold;  /* Makes the product name bold */
+}
+
+.suggested-total-purchased {
+    color: #555;  /* Slightly lighter color for the total purchased text */
+}
+
+
+
+
+
+
 

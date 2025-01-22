@@ -2,6 +2,7 @@ package edu.ku.comp306.ecommerce.controller;
 
 import edu.ku.comp306.ecommerce.dto.UserReviewDTO;
 import edu.ku.comp306.ecommerce.entity.Product;
+import edu.ku.comp306.ecommerce.enums.MembershipType;
 import edu.ku.comp306.ecommerce.repository.ReviewedRepository;
 import edu.ku.comp306.ecommerce.service.ProductService;
 import edu.ku.comp306.ecommerce.service.UserService;
@@ -50,6 +51,10 @@ public class HomepageScreenController {
         model.addAttribute("userId", userId);
         model.addAttribute("userName", userName);
         model.addAttribute("cartItemCount", cartItemCount);
+
+        MembershipType membershipType = userService.getMembershipTypeById(userId);
+        List<Map<String, Object>> suggestedProducts = productService.getTopProductsForMembership(membershipType);
+        model.addAttribute("suggestedProducts", suggestedProducts);
 
         return "homepageScreen";
     }
