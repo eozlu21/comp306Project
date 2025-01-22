@@ -13,10 +13,15 @@
 </div>
 
 <script>
-  // After 1 second, go back to the previous page in the browser history
-  setTimeout(function() {
-    window.history.back();
-  }, 2000);
+  // Navigate back and trigger a refresh flag
+  function navigateBackAndRefresh() {
+    // Set a reload flag in sessionStorage to refresh the previous page
+    sessionStorage.setItem("shouldReload", "true");
+    window.history.back(); // Navigate back
+  }
+
+  // Call the function after 2 seconds
+  setTimeout(() => navigateBackAndRefresh(), 2000);
 </script>
 </body>
 </html>
