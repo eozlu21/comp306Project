@@ -49,7 +49,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
             "JOIN Product p ON oc.productId = p.productId " +
             "WHERE u.membershipType = :membershipType " +
             "GROUP BY p.productId, p.brand " +
-            "ORDER BY totalPurchased DESC")
+            "ORDER BY totalPurchased DESC " +
+            "Limit 3")
     List<Object[]> findTopProductsByMembership(@Param("membershipType") MembershipType membershipType);
 
 
