@@ -59,4 +59,9 @@ public class CartService {
     public void deleteCart(Integer userId) {
         cartRepository.deleteByUserId(userId);
     }
+    public int getItemCountForUser(Integer userId) {
+        Integer count = cartRepository.countItemsByUserId(userId);
+        return count != null ? count : 0; // Return 0 if count is null
+    }
+
 }

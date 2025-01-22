@@ -3,23 +3,15 @@
 <head>
   <title th:text="${category} + ' Products'">Category Products</title>
   <link rel="stylesheet" href="/css/homepageScreen.css">
+  <link rel="stylesheet" href="/css/navbar.css">
 </head>
 <body>
 <div class="container">
   <header>
-    <h1 th:text="'Products in ' + ${category}">Category Products</h1>
-    <div class="button-container">
-      <a th:href="@{/cart(userID=${userId})}" class="profile-btn">Shopping Cart</a>
-      <a th:href="@{/profile(userID=${userId})}" class="profile-btn">Profile</a>
-    </div>
 
-    <div class="search-bar">
-      <form th:action="@{/search}" method="get">
-        <input type="hidden" name="userId" th:value="${userId}">
-        <input type="text" name="keyword" class="search-box" placeholder="Search for other products">
-        <button type="submit" class="search-button">🔍</button>
-      </form>
-    </div>
+    <div th:insert="fragments/navbar :: navbar"></div>
+
+
 
     <!-- Category Filter Links -->
     <div class="category-buttons">
@@ -28,10 +20,7 @@
       <a th:href="@{/products/camera(userID=${userId})}" class="category-btn">Cameras</a>
     </div>
 
-    <!-- Back to Homepage Button -->
-    <div class="back-button-container">
-      <a th:href="@{/homepage(userID=${userId})}" class="back-to-homepage-btn">🏠 Back to Homepage</a>
-    </div>
+
 
   </header>
 

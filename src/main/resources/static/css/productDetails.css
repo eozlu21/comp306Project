@@ -6,15 +6,25 @@ body {
     padding: 0;
     color: #334155;
 }
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+}
 
 .details-container {
-    max-width: 1400px;
+    width: 90%;
+    max-width: 1200px;
     margin: 40px auto;
-    padding: 32px;
+    padding: 2rem;
     background-color: #ffffff;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
 }
+
+
 
 /* Grid Layout for Product Info */
 .product-grid {
@@ -139,7 +149,7 @@ body {
 
 /* Cart Section */
 /* Cart Section */
-.cart-section {
+.add-cart-section {
     margin-top: 32px;
     display: flex;
     align-items: center;
@@ -147,20 +157,20 @@ body {
 }
 
 /* Make the form within cart-section align items in a row */
-.cart-section form {
+.add-cart-section form {
     display: flex;
     align-items: center;
     gap: 8px; /* adjust spacing as desired */
 }
 
 /* Style the quantity label */
-.cart-section form label[for="quantity"] {
+.add-cart-section form label[for="quantity"] {
     font-weight: 500;
     margin-right: 4px;
 }
 
 /* Style the quantity input */
-.cart-section input[type="number"] {
+.add-cart-section input[type="number"] {
     width: 60px; /* adjust width as desired */
     padding: 8px;
     border: 1px solid #e2e8f0;
@@ -172,20 +182,20 @@ body {
 }
 
 /* Hide the default spinner in some browsers */
-.cart-section input[type="number"]::-webkit-inner-spin-button,
-.cart-section input[type="number"]::-webkit-outer-spin-button {
+.add-cart-section input[type="number"]::-webkit-inner-spin-button,
+.add-cart-section input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
 /* Remove arrows in Firefox */
-.cart-section input[type="number"] {
+.add-cart-section input[type="number"] {
     -moz-appearance: textfield;
 }
 
 /* Slight hover/focus effect on the number input */
-.cart-section input[type="number"]:hover,
-.cart-section input[type="number"]:focus {
+.add-cart-section input[type="number"]:hover,
+.add-cart-section input[type="number"]:focus {
     border-color: #3b82f6;
     outline: none;
     box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
@@ -193,7 +203,7 @@ body {
 
 
 .back-button,
-.cart-section form button,
+.add-cart-section form button,
 .buy-button {
     display: inline-block;
     padding: 10px 20px;
@@ -208,7 +218,7 @@ body {
 }
 
 .back-button:hover,
-.cart-section form button:hover,
+.add-cart-section form button:hover,
 .buy-button:hover {
     background-color: #45a049;
 }

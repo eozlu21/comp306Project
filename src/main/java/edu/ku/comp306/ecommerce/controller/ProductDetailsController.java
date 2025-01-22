@@ -8,6 +8,7 @@ import edu.ku.comp306.ecommerce.repository.ReviewedRepository;
 import edu.ku.comp306.ecommerce.service.CartService;
 import edu.ku.comp306.ecommerce.service.OrderService;
 import edu.ku.comp306.ecommerce.service.ProductService;
+import edu.ku.comp306.ecommerce.service.UserService;
 import edu.ku.comp306.ecommerce.repository.LaptopRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,7 @@ public class ProductDetailsController {
     private final ReviewedRepository reviewedRepository;
     private final CartService cartService;
     private final OrderService orderService;
+    private final UserService userService;
 
     @GetMapping("/productDetails/{id}")
     public String getProductDetails(
@@ -55,6 +57,8 @@ public class ProductDetailsController {
         }
         String formattedAvgRating = String.format("%.1f", averageRating);
         long ratedCount = reviewedRepository.getRatedCount(productId);
+        String userName = userService.getUserNameById(userId);
+        int cartItemCount = cartService.getItemCountForUser(userId);
 
         model.addAttribute("product", product);
         model.addAttribute("laptop", laptop);
@@ -64,6 +68,8 @@ public class ProductDetailsController {
         model.addAttribute("hasPurchased", hasPurchased);
         model.addAttribute("averageRating", formattedAvgRating);
         model.addAttribute("ratedCount", ratedCount);
+        model.addAttribute("userName", userName);
+        model.addAttribute("cartItemCount", cartItemCount);
 
 
         List<UserReviewDTO> reviews = reviewedRepository.findReviewsForProduct(productId);
@@ -123,13 +129,16 @@ public class ProductDetailsController {
                                 .limit(2) // Limit the list to 2 reviews
                                 .collect(Collectors.toList())
                 ));
-
+        String userName = userService.getUserNameById(userId);
+        int cartItemCount = cartService.getItemCountForUser(userId);
         // Add data to the model
         model.addAttribute("products", products);
         model.addAttribute("category", category);
         model.addAttribute("userId", userId);
         model.addAttribute("productRatings", productRatings);
         model.addAttribute("productReviews", productReviews);
+        model.addAttribute("userName", userName);
+        model.addAttribute("cartItemCount", cartItemCount);
 
         return "product-list";
     }

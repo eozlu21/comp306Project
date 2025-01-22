@@ -3,31 +3,20 @@
 <head>
     <title>Home Screen</title>
     <link rel="stylesheet" href="/css/homepageScreen.css">
+    <link rel="stylesheet" href="/css/navbar.css">
 </head>
 <body>
 <div class="container">
     <header>
-        <h1>Home Screen</h1>
-        <div class="button-container">
-            <a th:href="@{/cart(userID=${userId})}" class="profile-btn">Shopping Cart</a>
-            <a th:href="@{/profile(userID=${userId})}" class="profile-btn">Profile</a>
-        </div>
+        <div th:insert="fragments/navbar :: navbar"></div>
 
-        <div class="search-bar">
-            <form th:action="@{/search}" method="get">
-                <input type="hidden" name="userId" th:value="${userId}">
-                <input type="text" name="keyword" class="search-box" placeholder="Search for other products">
-                <button type="submit" class="search-button">🔍</button>
-            </form>
-        </div>
-
-        <!-- Category Filter Buttons -->
         <div class="category-buttons">
             <a th:href="@{/products/phone(userID=${userId})}" class="category-btn">Phones</a>
             <a th:href="@{/products/laptop(userID=${userId})}" class="category-btn">Laptops</a>
             <a th:href="@{/products/camera(userID=${userId})}" class="category-btn">Cameras</a>
         </div>
     </header>
+
 
     <main>
         <h2>Popular products:</h2>

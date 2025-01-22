@@ -22,4 +22,9 @@ public class UserService {
     public User authenticateUser(String username, String password) {
         return userRepository.findByUsernameAndPassword(username, password).orElse(null);
     }
+    public String getUserNameById(Integer userId) {
+        return userRepository.findById(userId)
+                .map(User::getFullName)
+                .orElse("Guest");
+    }
 }
