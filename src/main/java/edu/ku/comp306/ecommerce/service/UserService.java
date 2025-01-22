@@ -54,4 +54,16 @@ public class UserService {
     public User[] getAllUsers() {
         return userRepository.findAll().toArray(new User[0]);
     }
+
+    public boolean userPurchasedAllCategories(int userId) {
+        return userRepository.findUsersWhoPurchasedAllCategories().contains(userId);
+    }
+
+    public boolean userReviewedAllProductsTheyOrdered(int userId) {
+        return userRepository.findUsersWhoReviewedAllProductsTheyOrdered().contains(userId);
+    }
+
+    public boolean userDidNotReviewAnyProductTheyOrdered(int userId) {
+        return userRepository.findUsersWhoDidNotReviewAnyProductTheyOrdered().contains(userId);
+    }
 }
