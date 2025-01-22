@@ -34,4 +34,24 @@ public class UserService {
                 .map(User::getMembershipType) // This assumes your `User` entity has a `MembershipType` field
                 .orElseThrow(() -> new IllegalArgumentException("User not found with ID: " + userId));
     }
+
+    public void updateMembershipType(int userId) {
+        Double totalSpending = userRepository.calculateTotalSpendingForLast30Days(userId);
+
+        // Handle null case when there are no orders
+        totalSpending = (totalSpending == null) ? 0 : totalSpending;
+
+        MembershipType membershipType = totalSpending > 200000 ? MembershipType.PREMIUM :
+                totalSpending > 100000 ? MembershipType.GOLD :
+                        MembershipType.SILVER;
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        user.setMembershipType(membershipType);
+        userRepository.save(user);
+    }
+
+    public User[] getAllUsers() {
+        return userRepository.findAll().toArray(new User[0]);
+    }
 }

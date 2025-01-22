@@ -2,6 +2,7 @@ package edu.ku.comp306.ecommerce.controller;
 
 import edu.ku.comp306.ecommerce.service.CartService;
 import edu.ku.comp306.ecommerce.service.OrderService;
+import edu.ku.comp306.ecommerce.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +15,12 @@ public class ShoppingCartController {
 
     private final CartService cartService;
     private final OrderService orderService;
+    private final UserService userService;
 
-    public ShoppingCartController(CartService cartService, OrderService orderService) {
+    public ShoppingCartController(CartService cartService, OrderService orderService, UserService userService) {
         this.cartService = cartService;
         this.orderService = orderService;
+        this.userService = userService;
     }
 
     /**
@@ -77,6 +80,7 @@ public class ShoppingCartController {
         }
         var orderID = orderService.createOrderId(userId, LocalDate.now());
         cartService.order(userId, orderID);
+        userService.updateMembershipType(userId);
         return "redirect:/checkout?userID=" + userId + "&orderID=" + orderID;
     }
 }
