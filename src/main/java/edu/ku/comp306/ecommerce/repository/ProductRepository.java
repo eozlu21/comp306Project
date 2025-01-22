@@ -42,7 +42,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("SELECT p FROM Product p WHERE LOWER(p.productName) LIKE LOWER(CONCAT('%', :keyword, '%'))")
     List<Product> searchByKeyword(@Param("keyword") String keyword);
 
-    @Query("SELECT p.productId, p.brand, p.imageURL, SUM(oc.quantity) AS totalPurchased " +
+    @Query("SELECT p.productName, p.brand, p.imageURL, SUM(oc.quantity) AS totalPurchased " +
             "FROM OrderContains oc " +
             "JOIN Orders o ON oc.orderId = o.orderId " +
             "JOIN User u ON o.userId = u.userId " +

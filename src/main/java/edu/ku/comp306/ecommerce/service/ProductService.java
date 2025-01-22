@@ -43,7 +43,7 @@ public class ProductService {
         // Map results into a key-value structure
         return results.stream().map(row -> {
             Map<String, Object> productData = new HashMap<>();
-            productData.put("productId", row[0]); // Product ID
+            productData.put("productName", row[0]); // Product ID
             productData.put("brand", row[1]);    // Brand
             productData.put("totalPurchased", row[3]); // Total Purchased Quantity
             productData.put("imageURL", row[2]);
