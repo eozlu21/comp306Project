@@ -4,6 +4,14 @@
   <title th:text="${category} + ' Products'">Category Products</title>
   <link rel="stylesheet" href="/css/homepageScreen.css">
   <link rel="stylesheet" href="/css/navbar.css">
+  <script>
+    // Check if this page should reload
+    if (sessionStorage.getItem("shouldReload") === "true") {
+      // Remove the flag and reload the page
+      sessionStorage.removeItem("shouldReload");
+      window.location.reload();
+    }
+  </script>
 </head>
 <body>
 <div class="container">
@@ -11,16 +19,12 @@
 
     <div th:insert="fragments/navbar :: navbar"></div>
 
-
-
     <!-- Category Filter Links -->
     <div class="category-buttons">
       <a th:href="@{/products/phone(userID=${userId})}" class="category-btn">Phones</a>
       <a th:href="@{/products/laptop(userID=${userId})}" class="category-btn">Laptops</a>
       <a th:href="@{/products/camera(userID=${userId})}" class="category-btn">Cameras</a>
     </div>
-
-
 
   </header>
 
@@ -60,10 +64,22 @@
             </div>
           </div>
 
-          <!-- Show Details Button -->
-          <a class="details-button" th:href="@{/productDetails/{id}(id=${product.productId}, userID=${userId})}">
-            Show Details
-          </a>
+          <!-- Actions: Show Details + Add to Cart -->
+          <div class="product-actions">
+            <!-- Show Details Button -->
+            <a class="details-button"
+               th:href="@{/productDetails/{id}(id=${product.productId}, userID=${userId})}">
+              Show Details
+            </a>
+
+            <!-- Add to Cart Form (always adds quantity 1) -->
+            <form th:action="@{/addToCart}" method="post" class="add-to-cart-form">
+              <input type="hidden" name="productId" th:value="${product.productId}" />
+              <input type="hidden" name="userId" th:value="${userId}" />
+              <input type="hidden" name="quantity" value="1" />
+              <button type="submit" class="add-to-cart-button">Add to Cart</button>
+            </form>
+          </div>
         </div>
       </div>
 
