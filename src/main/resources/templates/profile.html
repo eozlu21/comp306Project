@@ -36,6 +36,12 @@
             <span class="review-rating" th:text="'★ ' + ${review.rating} + '/5'"></span>
           </div>
           <span th:text="${review.comment}">Comment</span>
+          <div class="review-actions">
+            <a class="go-to-product-button"
+               th:href="@{/productDetails/{id}(id=${review.productId}, userID=${user.userId})}">
+              Go to Product
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -47,7 +53,7 @@
         <div class="order-card">
           <!-- Display Order Metadata -->
           <p th:text="'Order ID: ' + ${order.orderId}">Order ID</p>
-            <p th:text="'Order Date: ' + ${order.orderDate}">Order Date</p>
+          <p th:text="'Order Date: ' + ${order.orderDate}">Order Date</p>
           <p th:text="'Total Items: ' + ${order.numberOfItems}">Total Items</p>
           <p th:text="'Total Price: ₺' + ${order.totalPrice}">Total Price</p>
 

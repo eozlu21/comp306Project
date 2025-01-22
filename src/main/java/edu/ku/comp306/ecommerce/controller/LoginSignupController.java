@@ -28,6 +28,10 @@ public class LoginSignupController {
         User user = userService.authenticateUser(loginDTO.getUsername(), loginDTO.getPassword());
         if (user != null) {
             session.setAttribute("user", user);
+            //for all users in db call updatemembership type
+            for (User u : userService.getAllUsers()) {
+                userService.updateMembershipType(u.getUserId());
+            }
             return "redirect:/homepage?userID=" + user.getUserId();
         } else {
             model.addAttribute("loginDTO", loginDTO); // Re-add loginDTO to the model
