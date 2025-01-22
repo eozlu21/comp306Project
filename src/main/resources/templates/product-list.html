@@ -35,6 +35,8 @@
           <option value="">Any</option>
           <option value="3240">3240</option>
           <option value="4855">4855</option>
+          <option value="2815">2815</option>
+          <option value="5000">5000</option>
         </select>
 
         <!-- Screen Size -->
@@ -43,6 +45,8 @@
           <option value="">Any</option>
           <option value="6.1 inch">6.1 inch</option>
           <option value="6.8 inch">6.8 inch</option>
+          <option value="6.7 inch">6.7 inch</option>
+          <option value="6.55 inch">6.55 inch</option>
         </select>
 
         <!-- Resolution -->
@@ -51,6 +55,8 @@
           <option value="">Any</option>
           <option value="2532×1170 pixels">2532×1170 pixels</option>
           <option value="1440 x 3120 pixels">1440 x 3120 pixels</option>
+          <option value="2400×1080 pixels">2400×1080 pixels</option>
+          <option value="3200×1440 pixels">3200×1440 pixels</option>
         </select>
 
         <!-- Camera Resolution -->
@@ -267,7 +273,6 @@
 <div class="container">
   <header>
     <div th:insert="fragments/navbar :: navbar"></div>
-
     <!-- Category Filter Links -->
     <div class="category-buttons">
       <a th:href="@{/products/phone(userID=${userId})}" class="category-btn">Phones</a>

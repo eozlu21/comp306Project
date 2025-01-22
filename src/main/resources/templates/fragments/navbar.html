@@ -9,7 +9,7 @@
     <div class="navbar-search">
         <form th:action="@{/search}" method="get" class="search-form">
             <!-- Hidden input for userId -->
-            <input type="hidden" name="userId" th:value="${userId}">
+            <input type="hidden" name="userID" th:value="${userId}">
             <!-- Search input -->
             <input type="text" name="keyword" class="search-box" placeholder="Search for a product">
             <!-- Search button -->
