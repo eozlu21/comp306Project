@@ -146,7 +146,7 @@ public class ProductDetailsController {
     @GetMapping("/search")
     public String searchProducts(
             @RequestParam("keyword") String keyword,
-            @RequestParam("userId") Integer userId,
+            @RequestParam("userID") Integer userId,
             Model model) {
 
         // Fetch products based on the search keyword
@@ -179,5 +179,39 @@ public class ProductDetailsController {
         model.addAttribute("userId", userId);
 
         return "search-results";
+    }
+
+    @GetMapping("/products/{category}/filter")
+    public String filterProducts(
+            @PathVariable("category") String category,
+            @RequestParam Map<String, String> filters,
+            @RequestParam("userID") Integer userID,
+            Model model) {
+
+        List<Product> products = productService.filterProductsByCategory(category, filters);
+
+        Map<Integer, Double> productRatings = products.stream()
+                .collect(Collectors.toMap(
+                        Product::getProductId,
+                        product -> {
+                            Double avgRating = reviewedRepository.getAverageRating(product.getProductId());
+                            return avgRating != null ? avgRating : 0.0;
+                        }
+                ));
+
+        Map<Integer, List<UserReviewDTO>> productReviews = products.stream()
+                .collect(Collectors.toMap(
+                        Product::getProductId,
+                        product -> reviewedRepository.findReviewsForProduct(product.getProductId())
+                                .stream()
+                                .limit(2) // Limit the list to 2 reviews
+                                .collect(Collectors.toList())
+                ));
+        model.addAttribute("products", products);
+        model.addAttribute("productRatings", productRatings);
+        model.addAttribute("productReviews", productReviews);
+        model.addAttribute("userId", userID);
+        model.addAttribute("category", category);
+        return "product-list";
     }
 }
