@@ -13,6 +13,7 @@
         <div class="suggestions-list">
             <!-- Iterate over the suggested products -->
             <div class="suggested-product" th:each="product : ${suggestedProducts}">
+                <img th:src="${product['imageURL']}" alt="Product Image" class="product-image">
                 <div class="suggested-product-details">
                     <p class="suggested-product-id" th:text="'Product ID: ' + ${product['productId']}"></p>
                     <p class="suggested-brand" th:text="'Brand: ' + ${product['brand']}"></p>
