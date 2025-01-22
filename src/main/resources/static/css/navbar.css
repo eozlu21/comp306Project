@@ -4,24 +4,39 @@
     align-items: center;
     justify-content: space-between;
     background-color: #f2f2f2; /* Daha koyu bir mavi */
-    width:100%; /* Tüm genişliği kaplar */
+    width:1120px; /* Tüm genişliği kaplar */
     padding: 1rem 2rem;
     border-radius: 0; /* Köşeleri kaldırmak için */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
 }
 
 
-/* Logo */
+/* Logo Container */
 .navbar-logo {
     display: flex;
     align-items: center;
+    justify-content: center; /* Center aligns the content */
+    background-color: #f2f2f2; /* Subtle background for better visibility */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
+    transition: all 0.3s ease; /* Smooth hover effect */
+    text-decoration: none; /* Removes underline */
 }
 
-.logo-image {
-    height: 50px;
-    width: auto;
-    margin-right: 10px; /* Logonun yanındaki metin boşluğu */
+/* Hover Effect for the Logo */
+.navbar-logo:hover {
+    background-color: #e6e6e6; /* Slightly darker background on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
+    transform: translateY(-2px); /* Slight lift effect */
 }
+
+/* Logo Image */
+.logo-image {
+    height: 60px; /* Keep the size consistent */
+    width: auto;
+    border-radius: 15%;
+}
+
 
 
 
@@ -31,7 +46,8 @@
     align-items: center; /* İkon ve metni dikeyde ortalar */
     gap: 10px; /* İkon ve metin arasındaki boşluk */
     gap: 1rem; /* İkon ve metin arası boşluk */
-    padding: 0.5rem 1rem; /* İç boşluk ekler */
+    padding: 0.5rem 0.5rem; /* İç boşluk ekler */
+
     border-left: 1px solid #ccc; /* Profil ve cart arasında ince bir çizgi */
     margin-left: 1rem; /* Çizgi ile aradaki boşluk */
     font-size: 1.3rem; /* Yazı boyutunu artır */
@@ -68,37 +84,41 @@
 
 
 .cart {
-    display: flex;
-    align-items: center;
-    gap: 1rem; /* İkon ve metin arası boşluk */
+    position: relative; /* Makes the .cart-count position relative to .cart */
+    display: inline-block; /* Keeps the layout inline */
+    margin-left: 1rem; /* Adds space on the left */
     padding: 0.5rem 1rem; /* İç boşluk ekler */
     border-left: 1px solid #ccc; /* Profil ve cart arasında ince bir çizgi */
-    margin-left: 1rem; /* Çizgi ile aradaki boşluk */
-    font-size: 1.3rem; /* Yazı boyutunu artır */
+    border-right: 1px solid #ccc; /* Profil ve cart arasında ince bir çizgi */
 }
 
 .cart:hover {
-    background-color: #e6e6e6; /* Hover durumunda biraz koyulaşır */
-    border-radius: 8px; /* Köşeleri yuvarlatır */
-}
-.cart-count {
-    background-color: red;
-    color: white;
-    font-size: 0.8rem;
-    font-weight: bold;
-    border-radius: 50%;
-    padding: 0.3rem 0.6rem;
-    margin-left: 0.5rem;
-    display: inline-block;
+    background-color: #e6e6e6;
+    border-radius: 8px;
 }
 
+.cart-count {
+    position: absolute; /* Position relative to .cart */
+    top: 3px; /* Adjust vertical position of the badge */
+    right: 45px; /* Adjust horizontal position of the badge */
+    background-color: #4c84e9; /* Badge background color */
+    color: white; /* Badge text color */
+    font-size: 0.7rem; /* Font size for the count */
+    font-weight: normal; /* Bold text */
+    border-radius: 50%; /* Makes the badge circular */
+    padding: 0.3rem 0.3rem; /* Adds space inside the badge */
+    width: 10px; /* Set fixed width for circular shape */
+    height: 10px;
+    line-height: 10px; /* Vertically align text */
+    text-align: center; /* Centers the text inside the badge */
+}
 
 .icon-image {
-    height: 40px; /* İkon boyutunu artır */
+    height: 40px; /* Cart icon size */
     width: auto;
-    margin-right: 0.5rem;
-    color: #111111;
+    padding-right: 10px;
 }
+
 
 
 .navbar-link {
@@ -114,12 +134,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     padding: 0.5rem 1rem; /* Kenarlardan boşluk */
     background-color: #f9f9f9; /* Hafif gri arka plan */
     border-radius: 30px; /* Yuvarlatılmış köşeler */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+    margin-left: 65px;
+    margin-right: 35px;
 }
 
 
@@ -127,7 +149,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 800px; /* Maksimum genişlik */
+    max-width: 1500px; /* Maksimum genişlik */
     gap: 10px; /* Arama kutusu ve buton arasındaki boşluk */
 }
 
@@ -140,7 +162,7 @@
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* İç gölge */
     font-size: 1rem;
     outline: none; /* Fokus çerçevesini kaldır */
-    max-width: 800px;
+    max-width: 1000px;
 }
 
 .search-box::placeholder {
@@ -177,6 +199,8 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+    margin-left: 14px;
+
 }
 
 .logout-btn:hover {
