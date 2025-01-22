@@ -34,28 +34,12 @@ public class HomepageScreenController {
 
     @GetMapping("/homepage")
     public String getHomePage(@RequestParam("userID") Integer userId, Model model) {
+
         // Fetch popular products
         List<Product> products = productService.getPopularProducts();
+        Map<Integer, Double> productRatings = productService.fetchProductRatings(products);
+        Map<Integer, List<UserReviewDTO>> productReviews = productService.fetchProductReviews(products);
 
-        // Fetch average ratings for each product
-        Map<Integer, Double> productRatings = products.stream()
-                .collect(Collectors.toMap(
-                        Product::getProductId,
-                        product -> {
-                            Double avgRating = reviewedRepository.getAverageRating(product.getProductId());
-                            return avgRating != null ? avgRating : 0.0;
-                        }
-                ));
-
-        // Fetch reviews for each product
-        Map<Integer, List<UserReviewDTO>> productReviews = products.stream()
-                .collect(Collectors.toMap(
-                        Product::getProductId,
-                        product -> reviewedRepository.findReviewsForProduct(product.getProductId())
-                                .stream()
-                                .limit(2) // Limit the list to 2 reviews
-                                .collect(Collectors.toList())
-                ));
         String userName = userService.getUserNameById(userId);
         int cartItemCount = cartService.getItemCountForUser(userId);
 
@@ -74,5 +58,7 @@ public class HomepageScreenController {
 
         return "homepageScreen";
     }
+
+
 
 }

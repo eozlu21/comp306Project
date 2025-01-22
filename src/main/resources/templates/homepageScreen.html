@@ -4,6 +4,14 @@
     <title>Home Screen</title>
     <link rel="stylesheet" href="/css/homepageScreen.css">
     <link rel="stylesheet" href="/css/navbar.css">
+    <script>
+        // Check if this page should reload
+        if (sessionStorage.getItem("shouldReload") === "true") {
+            // Remove the flag and reload the page
+            sessionStorage.removeItem("shouldReload");
+            window.location.reload();
+        }
+    </script>
 </head>
 <body>
 <div class="container">

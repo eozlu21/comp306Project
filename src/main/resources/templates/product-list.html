@@ -4,14 +4,20 @@
   <title th:text="${category} + ' Products'">Category Products</title>
   <link rel="stylesheet" href="/css/homepageScreen.css">
   <link rel="stylesheet" href="/css/navbar.css">
+  <script>
+    // Check if this page should reload
+    if (sessionStorage.getItem("shouldReload") === "true") {
+      // Remove the flag and reload the page
+      sessionStorage.removeItem("shouldReload");
+      window.location.reload();
+    }
+  </script>
 </head>
 <body>
 <div class="container">
   <header>
 
     <div th:insert="fragments/navbar :: navbar"></div>
-
-
 
     <!-- Category Filter Links -->
     <div class="category-buttons">
@@ -20,56 +26,60 @@
       <a th:href="@{/products/camera(userID=${userId})}" class="category-btn">Cameras</a>
     </div>
 
-
-
   </header>
 
   <main>
     <h2 th:text="'Products in ' + ${category} + ':'">Selected Category</h2>
     <div class="product-list">
-      <!-- Check if there are products -->
-      <div th:if="${products.size() > 0}">
-        <!-- Iterate over the products list -->
-        <div class="product" th:each="product : ${products}">
-          <!-- Product Image -->
-          <img th:src="${product.imageURL}" alt="Product Image" class="product-image">
+      <!-- Iterate over the products list -->
+      <div class="product" th:each="product : ${products}">
 
-          <!-- Product Details -->
-          <div class="product-details">
-            <p class="product-name" th:text="${product.productName}">Product Name</p>
-            <p class="brand" th:text="'Brand: ' + ${product.brand}">Brand</p>
-            <p class="price" th:text="'Price: ₺' + ${product.price}">Price</p>
-          </div>
+        <!-- Product Image -->
+        <img th:src="${product.imageURL}" alt="Product Image" class="product-image">
 
-          <!-- Reviews Section -->
-          <div class="reviews-section">
-            <h3>
-              Reviews <span class="review-rating" th:text="'★ ' + ${productRatings[product.productId]} + '/5'"></span>
-              (<span th:text="${productReviews[product.productId]?.size()}">0</span>)
-            </h3>
-            <div class="reviews-grid">
-              <div class="review-card" th:each="review : ${productReviews[product.productId]}">
-                <div class="review-header">
-                  <span class="review-username" th:text="${review.username}">Username</span>
-                  <span class="membership-badge" th:text="${review.membershipType}">Membership</span>
-                  <span class="review-date" th:text="${review.reviewDate}">2025-01-20</span>
-                  <span class="review-rating" th:text="'★ ' + ${review.rating} + '/5'">5/5</span>
-                </div>
-                <p class="review-comment" th:text="${review.comment}">Comment</p>
+        <!-- Product Details -->
+        <div class="product-details">
+          <p class="product-name" th:text="${product.productName}">Product Name</p>
+          <p class="brand" th:text="'Brand: ' + ${product.brand}">Brand</p>
+          <p class="price" th:text="'Price: ₺' + ${product.price}">Price</p>
+        </div>
+
+        <!-- Reviews Section -->
+        <div class="reviews-section">
+          <h3>
+            Reviews
+            <span class="review-rating" th:text="'★ ' + ${productRatings[product.productId]} + '/5'">★ 4.5/5</span>
+            (<span th:text="${productReviews[product.productId]?.size()}">0</span>)
+          </h3>
+          <div class="reviews-grid">
+            <div class="review-card" th:each="review : ${productReviews[product.productId]}">
+              <div class="review-header">
+                <span class="review-username" th:text="${review.username}">Username</span>
+                <span class="membership-badge" th:text="${review.membershipType}">Membership</span>
+                <span class="review-date" th:text="${review.reviewDate}">2025-01-20</span>
+                <span class="review-rating" th:text="'★ ' + ${review.rating} + '/5'">★ 5/5</span>
               </div>
+              <p class="review-comment" th:text="${review.comment}">Comment</p>
             </div>
           </div>
+        </div>
 
+        <!-- Actions: Show Details + Add to Cart -->
+        <div class="product-actions">
           <!-- Show Details Button -->
-          <a class="details-button" th:href="@{/productDetails/{id}(id=${product.productId}, userID=${userId})}">
+          <a class="details-button"
+             th:href="@{/productDetails/{id}(id=${product.productId}, userID=${userId})}">
             Show Details
           </a>
-        </div>
-      </div>
 
-      <!-- No Products Message -->
-      <div th:if="${products.size() == 0}">
-        <p>No products found in this category.</p>
+          <!-- Add to Cart Form (always adds quantity 1) -->
+          <form th:action="@{/addToCart}" method="post" class="add-to-cart-form">
+            <input type="hidden" name="productId" th:value="${product.productId}" />
+            <input type="hidden" name="userId" th:value="${userId}" />
+            <input type="hidden" name="quantity" value="1" />
+            <button type="submit" class="add-to-cart-button">Add to Cart</button>
+          </form>
+        </div>
       </div>
     </div>
   </main>

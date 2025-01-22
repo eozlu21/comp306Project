@@ -141,7 +141,7 @@ main h2 {
 }
 
 .add-to-cart-button {
-    background-color: #4CAF50;
+    background-color: #ed6345;
     color: #fff;
     border: none;
     padding: 8px 16px;
@@ -152,9 +152,8 @@ main h2 {
 }
 
 .add-to-cart-button:hover {
-    background-color: #45a049;
+    background-color: #c6533a;
 }
-
 
 .product-details p {
     margin: 5px 0;
