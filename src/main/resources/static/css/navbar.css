@@ -31,7 +31,8 @@
     align-items: center; /* İkon ve metni dikeyde ortalar */
     gap: 10px; /* İkon ve metin arasındaki boşluk */
     gap: 1rem; /* İkon ve metin arası boşluk */
-    padding: 0.5rem 1rem; /* İç boşluk ekler */
+    padding: 0.5rem 0.5rem; /* İç boşluk ekler */
+
     border-left: 1px solid #ccc; /* Profil ve cart arasında ince bir çizgi */
     margin-left: 1rem; /* Çizgi ile aradaki boşluk */
     font-size: 1.3rem; /* Yazı boyutunu artır */
@@ -68,37 +69,41 @@
 
 
 .cart {
-    display: flex;
-    align-items: center;
-    gap: 1rem; /* İkon ve metin arası boşluk */
+    position: relative; /* Makes the .cart-count position relative to .cart */
+    display: inline-block; /* Keeps the layout inline */
+    margin-left: 1rem; /* Adds space on the left */
     padding: 0.5rem 1rem; /* İç boşluk ekler */
     border-left: 1px solid #ccc; /* Profil ve cart arasında ince bir çizgi */
-    margin-left: 1rem; /* Çizgi ile aradaki boşluk */
-    font-size: 1.3rem; /* Yazı boyutunu artır */
+    border-right: 1px solid #ccc; /* Profil ve cart arasında ince bir çizgi */
 }
 
 .cart:hover {
-    background-color: #e6e6e6; /* Hover durumunda biraz koyulaşır */
-    border-radius: 8px; /* Köşeleri yuvarlatır */
-}
-.cart-count {
-    background-color: red;
-    color: white;
-    font-size: 0.8rem;
-    font-weight: bold;
-    border-radius: 50%;
-    padding: 0.3rem 0.6rem;
-    margin-left: 0.5rem;
-    display: inline-block;
+    background-color: #e6e6e6;
+    border-radius: 8px;
 }
 
+.cart-count {
+    position: absolute; /* Position relative to .cart */
+    top: 3px; /* Adjust vertical position of the badge */
+    right: 45px; /* Adjust horizontal position of the badge */
+    background-color: red; /* Badge background color */
+    color: white; /* Badge text color */
+    font-size: 0.7rem; /* Font size for the count */
+    font-weight: normal; /* Bold text */
+    border-radius: 50%; /* Makes the badge circular */
+    padding: 0.3rem 0.3rem; /* Adds space inside the badge */
+    width: 10px; /* Set fixed width for circular shape */
+    height: 10px;
+    line-height: 10px; /* Vertically align text */
+    text-align: center; /* Centers the text inside the badge */
+}
 
 .icon-image {
-    height: 40px; /* İkon boyutunu artır */
+    height: 40px; /* Cart icon size */
     width: auto;
-    margin-right: 0.5rem;
-    color: #111111;
+    padding-right: 10px;
 }
+
 
 
 .navbar-link {
@@ -177,6 +182,8 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+    margin-left: 14px;
+
 }
 
 .logout-btn:hover {
