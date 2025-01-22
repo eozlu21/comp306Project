@@ -163,4 +163,23 @@
     transform: translateY(-2px); /* Hover sırasında hafif yükselir */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Daha belirgin gölge */
 }
+.logout-section {
+    margin-left: auto; /* Push to the far right */
+    display: flex;
+    align-items: center;
+}
+
+.logout-btn {
+    background-color: #ff4d4d; /* Red color for logout */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.logout-btn:hover {
+    background-color: #e63939; /* Darker red on hover */
+}
 
