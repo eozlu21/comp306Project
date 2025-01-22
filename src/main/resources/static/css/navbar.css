@@ -4,24 +4,39 @@
     align-items: center;
     justify-content: space-between;
     background-color: #f2f2f2; /* Daha koyu bir mavi */
-    width:100%; /* Tüm genişliği kaplar */
+    width:1120px; /* Tüm genişliği kaplar */
     padding: 1rem 2rem;
     border-radius: 0; /* Köşeleri kaldırmak için */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
 }
 
 
-/* Logo */
+/* Logo Container */
 .navbar-logo {
     display: flex;
     align-items: center;
+    justify-content: center; /* Center aligns the content */
+    background-color: #f2f2f2; /* Subtle background for better visibility */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
+    transition: all 0.3s ease; /* Smooth hover effect */
+    text-decoration: none; /* Removes underline */
 }
 
-.logo-image {
-    height: 50px;
-    width: auto;
-    margin-right: 10px; /* Logonun yanındaki metin boşluğu */
+/* Hover Effect for the Logo */
+.navbar-logo:hover {
+    background-color: #e6e6e6; /* Slightly darker background on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
+    transform: translateY(-2px); /* Slight lift effect */
 }
+
+/* Logo Image */
+.logo-image {
+    height: 60px; /* Keep the size consistent */
+    width: auto;
+    border-radius: 15%;
+}
+
 
 
 
@@ -86,7 +101,7 @@
     position: absolute; /* Position relative to .cart */
     top: 3px; /* Adjust vertical position of the badge */
     right: 45px; /* Adjust horizontal position of the badge */
-    background-color: red; /* Badge background color */
+    background-color: #4c84e9; /* Badge background color */
     color: white; /* Badge text color */
     font-size: 0.7rem; /* Font size for the count */
     font-weight: normal; /* Bold text */
@@ -119,12 +134,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     padding: 0.5rem 1rem; /* Kenarlardan boşluk */
     background-color: #f9f9f9; /* Hafif gri arka plan */
     border-radius: 30px; /* Yuvarlatılmış köşeler */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+    margin-left: 65px;
+    margin-right: 35px;
 }
 
 
@@ -132,7 +149,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 800px; /* Maksimum genişlik */
+    max-width: 1500px; /* Maksimum genişlik */
     gap: 10px; /* Arama kutusu ve buton arasındaki boşluk */
 }
 
@@ -145,7 +162,7 @@
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* İç gölge */
     font-size: 1rem;
     outline: none; /* Fokus çerçevesini kaldır */
-    max-width: 800px;
+    max-width: 1000px;
 }
 
 .search-box::placeholder {
